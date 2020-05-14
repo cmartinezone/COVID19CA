@@ -1,0 +1,10 @@
+// app global css in SCSS form
+.body--light {
+  /* ... */
+  background: $accent;
+}
+
+.card-border{
+  border-radius: 12px;
+  background: $cardcolor;
+}
