@@ -8,6 +8,7 @@ node_modules
 
 #Firebase logs
 .firebase
+/.firebase
 
 #PWA directory
 /src-pwa
