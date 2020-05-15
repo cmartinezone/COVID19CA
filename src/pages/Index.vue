@@ -1,5 +1,5 @@
 <template>
-  <q-page class="flex flex-top justify-center">
+  <q-page class="fit flex flex-top justify-center">
     <!-- Main Column "full width full height" -->
     <div class="fit column q-ma-md">
       <!-- select country row"  - -->
@@ -193,4 +193,5 @@ filters:{
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss">
+</style>

@@ -142,9 +142,14 @@ export default {
 </script>
 
 <style lang="scss">
-.q-tab__indicatorTest {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
+//For Iphone layout
+.iphone-footer {
+  padding-bottom: constant(safe-area-inset-bottom); /* iOS 11.0 */
+  padding-bottom: env(safe-area-inset-bottom); /* iOS 11.2 */
+}
+
+.iphone-header {
+  padding-top: constant(safe-area-inset-top); /* iOS 11.0 */
+  padding-top: env(safe-area-inset-top); /* iOS 11.2 */
 }
 </style>
