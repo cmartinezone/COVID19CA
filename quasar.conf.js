@@ -77,7 +77,8 @@ module.exports = function (/* ctx */) {
         'QCard',
         'QCardSection',
         'QCardActions',
-        'QSeparator'
+        'QSeparator',
+        'QSpace'
       ],
 
       directives: [
@@ -136,9 +137,9 @@ module.exports = function (/* ctx */) {
       workboxPluginMode: 'GenerateSW', // 'GenerateSW' or 'InjectManifest'
       workboxOptions: {}, // only for GenerateSW
       manifest: {
-        name: 'COVID-19 CA',
+        name: 'COVID-19 Centro America',
         short_name: 'COVID-19 CA',
-        description: 'Reporte de estadisticas de Covid-19 en Centro America.',
+        description: 'Reporte Estadístico de COVID-19 en Centro America',
         display: 'standalone',
         orientation: 'portrait',
         background_color: '#ffffff',
@@ -170,6 +171,10 @@ module.exports = function (/* ctx */) {
             type: 'image/png'
           }
         ]
+      },
+      metaVariables: {
+        appleMobileWebAppCapable: 'yes',
+        appleMobileWebAppStatusBarStyle: 'black-translucent'
       }
     },
 

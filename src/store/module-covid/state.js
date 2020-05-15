@@ -1,7 +1,7 @@
 export default function () {
   return {
     covidData:[],
-    countrySelected: null,
-    countryData:{}
+    countrySelected: null
+   // countryData:{}
   }
 }

@@ -1,21 +1,29 @@
-/* export function getDataCountry (state) {
-  
- let setCountry = null
- let searchCountry = state.countrySelected
- state.covidData.forEach(element => {
-   if (element.country === searchCountry) {
-     setCountry = element  
-   }
- });
-return setCountry
-} */
 
-export function getCountryData(state){
+export function getCountryData(state, getters){
   let country =  state.covidData.filter(item => item.country === state.countrySelected)
-  //let country = {"country":"El Salvador","cases":1037,"todayCases":0,"deaths":20,"todayDeaths":0,"recovered":374,"active":643,"critical":15,"casesPerOneMillion":160,"deathsPerOneMillion":3,"totalTests":46831,"testsPerOneMillion":7220}
- 
- 
+  
+  if (state.countrySelected === 'Todo Centro America') {
+    country = [getters.getAllCMCountries]
+  }
+  
   return country
+}
+
+export function getAllCMCountries(state){
+ // let allCMCountries = {"cases":0,"todayCases":0,"deaths":0,"todayDeaths":0,"recovered":0,"active":0,"critical":0,"totalTests":0}
+ let allCMCountries = {cases:0,"todayCases":0,"deaths":0,"todayDeaths":0,"recovered":0,"active":0,"critical":0,"totalTests":0}
+ state.covidData.forEach(country => {
+      allCMCountries.cases += country.cases
+      allCMCountries.todayCases += country.todayCases
+      allCMCountries.deaths += country.deaths
+      allCMCountries.todayDeaths += country.todayDeaths
+      allCMCountries.recovered += country.recovered
+      allCMCountries.active += country.active
+      allCMCountries.critical += country.critical
+      allCMCountries.totalTests += country.totalTests
+  });
+  
+  return allCMCountries
 }
 
 export function covidData(state) {

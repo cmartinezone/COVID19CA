@@ -30,7 +30,7 @@ export default {
           icon: 'mdi-chart-bar',
           to: 'home'
         },
-        {
+       /*  {
           label: 'Sintomas',
           icon: 'mdi-heart-pulse',
           to: '#'
@@ -39,7 +39,7 @@ export default {
           label: 'Ayuda',
           icon: 'mdi-help-box',
           to: '#'
-        }
+        } */
       ]
     }
   }

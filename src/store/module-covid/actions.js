@@ -1,7 +1,7 @@
 import axios from "axios"
 import {Loading} from "quasar"
 
-export const getCovidData = async ({commit, dispatch}) => {
+export const getCovidData = async ({commit, dispatch, state}) => {
   Loading.show()
   const countries = [
     "El Salvador",
@@ -39,6 +39,10 @@ export const getCovidData = async ({commit, dispatch}) => {
     allCountries.push(res7.data)
 
     commit('setCovidData', allCountries)
+
+    if (state.countrySelected === null || state.countrySelected === 'Todo Centro America') {
+      dispatch('selectCountry', 'Todo Centro America')
+    }
     
   } catch (error) {
     console.log(error)

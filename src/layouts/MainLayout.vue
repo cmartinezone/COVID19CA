@@ -4,8 +4,18 @@
       <!-- <q-bar class="bg-secondary"></q-bar> -->
       <q-toolbar>
         <q-btn flat round size="md" icon="mdi-information"/>
-        <q-toolbar-title class="text-center">COVID-19 CA </q-toolbar-title>
-        <q-btn flat round size="md" @click="getCovidData" icon="mdi-refresh"/>
+
+        <q-toolbar-title v-if="isMobile" class="text-center">COVID-19 CA</q-toolbar-title>
+        <q-toolbar-title v-else class="text-center">COVID-19 Centro America </q-toolbar-title>
+        
+       <q-btn
+          v-if="this.$q.platform.is.mobile"
+          flat
+          dense
+          round
+          @click="ShareSocialMedia"
+          icon="mdi-share-variant"
+        />
       </q-toolbar>
       <!--
       <q-toolbar>
@@ -26,6 +36,11 @@
 <script>
 import { mapActions } from 'vuex'
 import mainMenu from 'components/mobileLayout/mainMenu'
+
+/* Capacitor for PWA access to phone APis */
+import { Plugins } from '@capacitor/core'
+const { Share } = Plugins
+
 export default {
   name: 'MainLayout',
 
@@ -38,14 +53,22 @@ export default {
       isStatusBarLight: true,
       leftDrawerOpen: false,
       tab: 'home',
-
+      isMobile: this.$q.platform.is.mobile,
       dialog: false,
       maximizedToggle: true
     }
   },
-methods:{
-   ...mapActions('covid', ['getCovidData'])
-}
+  methods:{
+    async ShareSocialMedia() {
+      let shareRet = await Share.share({
+        title: `COVID-19 Centro America`,
+        text: `Reporte Estadístico de COVID-19 en Centro America`,
+        url: `https://covid19ca.app`,
+        dialogTitle: `COVID-19 Centro America`
+      })
+      console.log(shareRet)
+    }
+  }
 }
 </script>
 
@@ -54,16 +77,5 @@ methods:{
   width: 5px;
   height: 5px;
   border-radius: 50%;
-}
-
-//For Iphone layout
-.iphone-footer {
-  padding-bottom: constant(safe-area-inset-bottom); /* iOS 11.0 */
-  padding-bottom: env(safe-area-inset-bottom); /* iOS 11.2 */
-}
-
-.iphone-header {
-  padding-top: constant(safe-area-inset-top); /* iOS 11.0 */
-  padding-top: env(safe-area-inset-top); /* iOS 11.2 */
 }
 </style>
