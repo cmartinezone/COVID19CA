@@ -2,7 +2,7 @@ import axios from "axios"
 import {Loading} from "quasar"
 
 export const getCovidData = async ({commit, dispatch, state}) => {
-  Loading.show()
+  //Loading.show()
   const countries = [
     "El Salvador",
     "Honduras",
@@ -47,7 +47,7 @@ export const getCovidData = async ({commit, dispatch, state}) => {
   } catch (error) {
     console.log(error)
   }
-  Loading.hide()
+ // Loading.hide()
 };
 
 export const selectCountry =  ({commit}, payload) => {  

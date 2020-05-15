@@ -11,11 +11,11 @@
     "test": "echo \"No test specified\" && exit 0"
   },
   "dependencies": {
+    "@capacitor/core": "^2.1.0",
     "@quasar/extras": "^1.0.0",
     "axios": "^0.18.1",
-    "quasar": "^1.0.0",
-    "vue-i18n": "^8.0.0",
-    "@capacitor/core": "^2.1.0"
+    "quasar": "^1.11.2",
+    "vue-i18n": "^8.0.0"
   },
   "devDependencies": {
     "@quasar/app": "^1.0.0"

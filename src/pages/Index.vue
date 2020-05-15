@@ -8,6 +8,7 @@
           <q-select
             rounded
             outlined
+            hide-dropdown-icon
             style="font-size:16px;"
             v-model="setCountry"
             :options="countryOptions"

@@ -6,6 +6,9 @@ node_modules
 .quasar
 /dist
 
+#Firebase logs
+.firebase
+
 #PWA directory
 /src-pwa
 
