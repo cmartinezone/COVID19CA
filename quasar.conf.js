@@ -78,11 +78,14 @@ module.exports = function (/* ctx */) {
         'QCardSection',
         'QCardActions',
         'QSeparator',
-        'QSpace'
+        'QSpace',
+        'QDialog',
+        'QAvatar'
       ],
 
       directives: [
-        'Ripple'
+        'Ripple',
+        'ClosePopup'
       ],
 
       // Quasar plugins
