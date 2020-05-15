@@ -8,7 +8,7 @@
   "author": "Carlos Martinez <carlos0492@outlook.com>",
   "private": true,
   "scripts": {
-    "start": "quasar dev -m pwa",
+    "start": "quasar dev",
     "post-update": "yarn upgrade --latest",
     "test": "echo \"No test specified\" && exit 0"
   },
