@@ -1,7 +1,11 @@
 <template>
   <q-page class="fit flex flex-top justify-center">
     <!-- Main Column "full width full height" -->
-    <div class="fit column q-ma-md">
+    <div
+      class="column q-ma-md"
+      :class="{ fit: isMobile }"
+      :style="{ 'width:50%;': !isMobile }"
+    >
       <!-- select country row"  - -->
       <div class="row q-ma-sm">
         <div class="col-12">
@@ -45,11 +49,20 @@
                 </div>
                 <div class="col-8 text-right">
                   <div class="text-h4 text-green">
-                    <span v-if="getCountryData.length">{{ getCountryData[0].cases | formatNumber }}</span>
+                    <span v-if="getCountryData.length">{{
+                      getCountryData[0].cases | formatNumber
+                    }}</span>
                     <span v-else>...</span>
                   </div>
-                  <div v-if="getCountryData.length && getCountryData[0].todayCases != 0" class="text-italic text-green">
-                    Incremento +  {{getCountryData[0].todayCases | formatNumber }}</div>
+                  <div
+                    v-if="
+                      getCountryData.length && getCountryData[0].todayCases != 0
+                    "
+                    class="text-italic text-green"
+                  >
+                    Incremento +
+                    {{ getCountryData[0].todayCases | formatNumber }}
+                  </div>
                 </div>
               </div>
             </q-card-section>
@@ -64,33 +77,47 @@
             <q-card-section>
               <div class="text-h6 text-weight-light">{{ category.name }}</div>
             </q-card-section>
-                    
+
             <q-card-section class="q-pt-none q-pb-xs">
               <div class="column" style="height: 60px">
-                  <div class="row">
-                <div class="col-4">
-                  <q-icon
-                    :name="category.icon"
-                    :color="category.color"
-                    size="md"
-                  ></q-icon>
-                </div>
-                  
-                  <div class="col-8 q-pt-xs">
-                <div
-                  class="text-right text-subtitle1"
-                  :class="'text-' + category.color"
-                  style="font-size:20px;"
-                >
-                  {{ category.total | formatNumber}}
-                </div>
-                <!-- Category Incrmented -->
-                   <div v-if="category.today !== 0" class="text-italic text-right" :class="'text-' + category.color"> 
-                    + {{category.today}} </div>
+                <div class="row">
+                  <div class="col-4">
+                    <q-icon
+                      :name="category.icon"
+                      :color="category.color"
+                      size="md"
+                    ></q-icon>
                   </div>
-                 </div>
+
+                  <div class="col-8 q-pt-xs">
+                    <div
+                      class="text-right text-subtitle1"
+                      :class="'text-' + category.color"
+                      style="font-size:20px;"
+                    >
+                      {{ category.total | formatNumber }}
+                    </div>
+                    <!-- Category Incrmented -->
+                    <div
+                      v-if="category.today !== 0"
+                      class="text-italic text-right"
+                      :class="'text-' + category.color"
+                    >
+                      + {{ category.today }}
+                    </div>
+                  </div>
+                </div>
               </div>
             </q-card-section>
+          </q-card>
+        </div>
+      </div>
+
+      <!-- Chart Number of test -->
+      <div v-if="getCountrySelected == 'Todo Centro America'" class="row q-ma-sm">
+        <div class="col-12">
+          <q-card class="fit card-border text-center">
+             <apexchart  type="bar" height="250px" :options="chartOptions" :series="this.getContriesTests.series" />
           </q-card>
         </div>
       </div>
@@ -115,24 +142,80 @@ export default {
         "Panama",
         "Nicaragua",
         "Belize"
-      ]
+      ],
+      /* Chart */
+      chartOptions: {
+        colors: ['#FCCF31', '#17ead9', '#f02fc2'],
+        grid: {
+          show: true,
+          strokeDashArray: 0,
+          xaxis: {
+            lines: {
+              show: true
+            }
+          }
+        },
+        title: {
+          enabled: false,
+          text: 'Pruebas por País',
+          align: 'center',
+          style: {
+            color: '#FFF'
+          }
+        },
+        dataLabels: {
+          enabled: false
+        },
+        stroke: {
+          width: 0
+        },
+        xaxis: {
+          categories: ['El Salvador', 'Honduras', 'Guatemala', 'Costa Rica', 'Panama', 'Nicaragua', 'Belize'],
+          labels: {
+            style: {
+              colors: '#fff'
+            }
+          }
+        },
+        yaxis: {
+          title: {
+            text: 'Cantidad',
+            style: {
+              color: '#fff'
+            }
+          },
+          labels: {
+            style: {
+              color: '#fff'
+            }
+          }
+        },
+        tooltip: {
+          y: {
+            formatter: function (val) {
+              return  Intl.NumberFormat().format(val);
+            }
+          }
+        }
+      }
+      /* End Chart */
     };
   },
   methods: {
     ...mapActions("Covid", ["selectCountry", "getCovidData"])
   },
-filters:{
+  filters: {
     formatNumber(value) {
-    if (isNaN(value)) return '...'
-    value = new Intl.NumberFormat().format(value)
-    return value
-  }
-},
+      if (isNaN(value)) return "...";
+      value = new Intl.NumberFormat().format(value);
+      return value;
+    }
+  },
   computed: {
     ...mapGetters("Covid", [
       "getCountrySelected",
       "getCountryData",
-      "getCountrySelected"
+      "getContriesTests"
     ]),
     localData() {
       const dataCategories = [
@@ -154,7 +237,7 @@ filters:{
             ? this.getCountryData[0].active
             : "...",
           color: "light-blue",
-          today:0
+          today: 0
         },
         {
           name: "Recuperados",
@@ -163,7 +246,7 @@ filters:{
             ? this.getCountryData[0].recovered
             : "...",
           color: "cyan",
-          today:0
+          today: 0
         },
         {
           name: "Pruebas",
@@ -172,7 +255,7 @@ filters:{
             ? this.getCountryData[0].totalTests
             : "...",
           color: "amber",
-          today:0
+          today: 0
         }
       ];
       return dataCategories;
@@ -188,10 +271,9 @@ filters:{
     }
   },
   created() {
-   // this.getCovidData();
+    // this.getCovidData();
   }
 };
 </script>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>

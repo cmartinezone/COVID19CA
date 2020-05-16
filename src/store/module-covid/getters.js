@@ -26,8 +26,20 @@ export function getAllCMCountries(state){
   return allCMCountries
 }
 
-export function covidData(state) {
-  return state.covidData
+export function getContriesTests(state) {
+
+  let countriesTests = {
+    series: [{
+      name: 'Pruebas',
+      data: [],
+    }],
+  }
+  state.covidData.forEach(country => {
+  //  let val =  Intl.NumberFormat().format(country.totalTests)
+    countriesTests.series[0].data.push(country.totalTests)
+  });
+
+  return countriesTests
 }
 
 export function getCountrySelected(state){
