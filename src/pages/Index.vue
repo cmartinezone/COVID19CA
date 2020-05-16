@@ -116,9 +116,7 @@
       <!-- Chart Number of test -->
       <div v-if="getCountrySelected == 'Todo Centro America'" class="row q-ma-sm">
         <div class="col-12">
-          <q-card class="fit card-border text-center">
-             <apexchart  type="bar" height="250px" :options="chartOptions" :series="this.getContriesTests.series" />
-          </q-card>
+         <tests-chart></tests-chart>
         </div>
       </div>
     </div>
@@ -142,64 +140,11 @@ export default {
         "Panama",
         "Nicaragua",
         "Belize"
-      ],
-      /* Chart */
-      chartOptions: {
-        colors: ['#FCCF31', '#17ead9', '#f02fc2'],
-        grid: {
-          show: true,
-          strokeDashArray: 0,
-          xaxis: {
-            lines: {
-              show: true
-            }
-          }
-        },
-        title: {
-          enabled: false,
-          text: 'Pruebas por País',
-          align: 'center',
-          style: {
-            color: '#FFF'
-          }
-        },
-        dataLabels: {
-          enabled: false
-        },
-        stroke: {
-          width: 0
-        },
-        xaxis: {
-          categories: ['El Salvador', 'Honduras', 'Guatemala', 'Costa Rica', 'Panama', 'Nicaragua', 'Belize'],
-          labels: {
-            style: {
-              colors: '#fff'
-            }
-          }
-        },
-        yaxis: {
-          title: {
-            text: 'Cantidad',
-            style: {
-              color: '#fff'
-            }
-          },
-          labels: {
-            style: {
-              color: '#fff'
-            }
-          }
-        },
-        tooltip: {
-          y: {
-            formatter: function (val) {
-              return  Intl.NumberFormat().format(val);
-            }
-          }
-        }
-      }
-      /* End Chart */
+      ]
     };
+  },
+  components: {
+   'tests-chart': require('components/mainReport/testsChart.vue').default,
   },
   methods: {
     ...mapActions("Covid", ["selectCountry", "getCovidData"])
@@ -214,8 +159,7 @@ export default {
   computed: {
     ...mapGetters("Covid", [
       "getCountrySelected",
-      "getCountryData",
-      "getContriesTests"
+      "getCountryData"
     ]),
     localData() {
       const dataCategories = [
@@ -260,7 +204,6 @@ export default {
       ];
       return dataCategories;
     },
-
     setCountry: {
       get() {
         return this.getCountrySelected;
@@ -269,11 +212,7 @@ export default {
         this.selectCountry(value);
       }
     }
-  },
-  created() {
-    // this.getCovidData();
   }
 };
 </script>
 
-<style lang="scss"></style>

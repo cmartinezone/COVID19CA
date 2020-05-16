@@ -26,7 +26,7 @@ export default {
     return {
       mobileMenu: [
         {
-          label: 'Estadisticas',
+          label: 'Estadistícas',
           icon: 'mdi-chart-bar',
           to: 'home'
         },
