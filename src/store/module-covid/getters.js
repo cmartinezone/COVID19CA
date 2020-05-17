@@ -1,11 +1,9 @@
 
 export function getCountryData(state, getters){
   let country =  state.covidData.filter(item => item.country === state.countrySelected)
-  
   if (state.countrySelected === 'Todo Centro America') {
     country = [getters.getAllCMCountries]
   }
-  
   return country
 }
 
@@ -27,18 +25,17 @@ export function getAllCMCountries(state){
 }
 
 export function getContriesTests(state) {
-
   let countriesTests = {
     series: [{
       name: 'Pruebas',
       data: [],
     }],
+    categories:[]
   }
   state.covidData.forEach(country => {
-  //  let val =  Intl.NumberFormat().format(country.totalTests)
+    countriesTests.categories.push(country.country)
     countriesTests.series[0].data.push(country.totalTests)
   });
-
   return countriesTests
 }
 

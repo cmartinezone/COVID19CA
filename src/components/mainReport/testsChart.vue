@@ -1,12 +1,11 @@
 <template>
   <q-card class="fit card-border text-center">
     <q-card-section class="q-pb-none">
-      <div class="text-h6 text-weight-light text-white">Pruebas por país</div>
       <apexchart
         type="bar"
         height="250px"
         width="100%"
-        :options="chartOptions"
+        :options="countriesChart"
         :series="this.getContriesTests.series"
       />
     </q-card-section>
@@ -38,10 +37,13 @@ export default {
           background: "#192129"
         },
         title: {
-          // text: "undefined",
+          text: "Pruebas por país",
           align: "center",
           style: {
-            color: "#FFF"
+              color: "#FFFFFF",
+              fontSize: '20px',
+              fontFamily: 'Roboto',
+              fontWeight: 300
           }
         },
         dataLabels: {
@@ -51,18 +53,15 @@ export default {
           width: 0
         },
         xaxis: {
-          categories: [
-            "El Salvador",
-            "Honduras",
-            "Guatemala",
-            "Costa Rica",
-            "Panama",
-            "Nicaragua",
-            "Belize"
-          ],
+          //Categories labels
+          categories: [],
           labels: {
+            show:true,
             style: {
-              colors: "#fff"
+              colors: "#fff",
+              fontSize: '13px',
+              fontFamily: 'Roboto',
+              fontWeight: 300
             }
           }
         },
@@ -70,12 +69,17 @@ export default {
           title: {
             text: "Cantidad",
             style: {
-              color: "#fff"
+              color: "#fff",
+              fontSize: '18px',
+              fontFamily: 'Roboto',
+              fontWeight: 300
             }
           },
           labels: {
+            show:true,
             style: {
-              color: "#fff"
+              color: "#fff",
+              fontFamily: 'Roboto'
             }
           }
         },
@@ -91,7 +95,11 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("Covid", ["getContriesTests"])
+    ...mapGetters("Covid", ["getContriesTests"]),
+    countriesChart(){
+      this.chartOptions.xaxis.categories = this.getContriesTests.categories
+      return this.chartOptions
+    }
   }
 };
 </script>

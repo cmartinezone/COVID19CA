@@ -113,10 +113,13 @@
         </div>
       </div>
 
-      <!-- Chart Number of test -->
-      <div v-if="getCountrySelected == 'Todo Centro America'" class="row q-ma-sm">
+      <!-- Chart all countries tests -->
+      <div
+        v-if="getCountrySelected == 'Todo Centro America'"
+        class="row q-ma-sm q-pb-md"
+      >
         <div class="col-12">
-         <tests-chart></tests-chart>
+          <tests-chart></tests-chart>
         </div>
       </div>
     </div>
@@ -124,9 +127,10 @@
 </template>
 
 <script>
+import { analytics } from "boot/firebaseAnalytics";
 import { mapGetters, mapActions } from "vuex";
 export default {
-  name: "PageIndex",
+  name: "Home",
   data() {
     return {
       isMobile: this.$q.platform.is.mobile,
@@ -144,7 +148,7 @@ export default {
     };
   },
   components: {
-   'tests-chart': require('components/mainReport/testsChart.vue').default,
+    "tests-chart": require("components/mainReport/testsChart.vue").default
   },
   methods: {
     ...mapActions("Covid", ["selectCountry", "getCovidData"])
@@ -157,10 +161,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters("Covid", [
-      "getCountrySelected",
-      "getCountryData"
-    ]),
+    ...mapGetters("Covid", ["getCountrySelected", "getCountryData"]),
     localData() {
       const dataCategories = [
         {
@@ -204,6 +205,8 @@ export default {
       ];
       return dataCategories;
     },
+
+    //Set and Get select
     setCountry: {
       get() {
         return this.getCountrySelected;
@@ -212,7 +215,10 @@ export default {
         this.selectCountry(value);
       }
     }
+  },
+  created() {
+   analytics.setCurrentScreen('/')
+   //analytics.logEvent('eventname', {'firsttimeuser': true });
   }
 };
 </script>
-

@@ -60,7 +60,7 @@
           Web App Desarollador
         </div>
           <div class="text-caption text-grey-8">
-           v 1.0
+           v 1.1
         </div>
       </q-card-section>
 

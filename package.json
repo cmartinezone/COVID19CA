@@ -16,6 +16,7 @@
     "@capacitor/core": "^2.1.0",
     "@quasar/extras": "^1.0.0",
     "apexcharts": "^3.19.0",
+    "firebase": "7.14.3",
     "axios": "^0.18.1",
     "quasar": "^1.11.2",
     "vue-apexcharts": "^1.5.3",

@@ -1,5 +1,6 @@
 import axios from "axios"
 import {Loading} from "quasar"
+import { analytics } from "boot/firebaseAnalytics";
 
 export const getCovidData = async ({commit, dispatch, state}) => {
   //Loading.show()
@@ -51,5 +52,7 @@ export const getCovidData = async ({commit, dispatch, state}) => {
 };
 
 export const selectCountry =  ({commit}, payload) => {  
+  //Record Google analytics country selection  
+  analytics.logEvent('select_country', { name: payload});
     commit('setSelectCountry', payload)   
 }

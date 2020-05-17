@@ -12,9 +12,10 @@ module.exports = function (/* ctx */) {
     // --> boot files are part of "main.js"
     // https://quasar.dev/quasar-cli/cli-documentation/boot-files
     boot: [
-      'i18n',
+    /*   'i18n', */
       'axios',
-      'apexChart'
+      'apexChart',
+      'firebaseAnalytics'
     ],
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
@@ -80,7 +81,8 @@ module.exports = function (/* ctx */) {
         'QSeparator',
         'QSpace',
         'QDialog',
-        'QAvatar'
+        'QAvatar',
+        'QBanner'
       ],
 
       directives: [
@@ -128,7 +130,7 @@ module.exports = function (/* ctx */) {
 
     // animations: 'all', // --- includes all animations
     // https://quasar.dev/options/animations
-    animations: [],
+    animations: ['bounceIn', 'bounceOut'],
 
     // https://quasar.dev/quasar-cli/developing-ssr/configuring-ssr
     ssr: {
