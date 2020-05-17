@@ -82,7 +82,7 @@ module.exports = function (/* ctx */) {
         'QSpace',
         'QDialog',
         'QAvatar',
-        'QBanner'
+        'QPullToRefresh'
       ],
 
       directives: [
