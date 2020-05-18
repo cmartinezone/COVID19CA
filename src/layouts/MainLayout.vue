@@ -60,7 +60,7 @@
           Web App Desarollador
         </div>
           <div class="text-caption text-grey-8">
-           v 1.1
+          {{aboutVersion}}
         </div>
       </q-card-section>
 
@@ -108,6 +108,7 @@ export default {
 
   data() {
     return {
+      aboutVersion:'1.3',
       isStatusBarLight: true,
       leftDrawerOpen: false,
       tab: "home",

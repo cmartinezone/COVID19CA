@@ -5,8 +5,8 @@
         type="bar"
         height="250px"
         width="100%"
-        :options="countriesChart"
-        :series="this.getContriesTests.series"
+        :options="countriesTestsChart"
+        :series="this.get_contries_tests.series"
       />
     </q-card-section>
   </q-card>
@@ -95,13 +95,11 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("Covid", ["getContriesTests"]),
-    countriesChart(){
-      this.chartOptions.xaxis.categories = this.getContriesTests.categories
+    ...mapGetters("Covid", ['get_contries_tests']),
+    countriesTestsChart(){
+      this.chartOptions.xaxis.categories = this.get_contries_tests.categories
       return this.chartOptions
     }
   }
 };
 </script>
-
-<style lang="scss"></style>

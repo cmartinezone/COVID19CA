@@ -1,11 +1,7 @@
 <template>
   <q-page class="fit flex flex-top justify-center">
     <!-- Main Column "full width full height" -->
-    <div
-      class="column q-ma-md"
-      :class="{ fit: isMobile }"
-      :style="{ 'width:50%;': !isMobile }"
-    >
+    <div class="column q-ma-md">
       <!-- select country row"  - -->
       <div class="row q-ma-sm">
         <div class="col-12">
@@ -13,7 +9,8 @@
             rounded
             outlined
             hide-dropdown-icon
-            style="font-size:16px;"
+            style="font-size:18px;"
+            popup-content-style="font-size:16px;"
             v-model="setCountry"
             :options="countryOptions"
             label="Selecionar País"
@@ -49,19 +46,17 @@
                 </div>
                 <div class="col-8 text-right">
                   <div class="text-h4 text-green">
-                    <span v-if="getCountryData.length">{{
-                      getCountryData[0].cases | formatNumber
+                    <span v-if="this.get_country_data != null">{{
+                      get_country_data.cases | formatNumber
                     }}</span>
                     <span v-else>...</span>
                   </div>
                   <div
-                    v-if="
-                      getCountryData.length && getCountryData[0].todayCases != 0
-                    "
+                    v-if="this.get_country_data != null && this.get_country_data.todayCases != 0"
                     class="text-italic text-green"
                   >
                     Incremento +
-                    {{ getCountryData[0].todayCases | formatNumber }}
+                    {{ get_country_data.todayCases | formatNumber }}
                   </div>
                 </div>
               </div>
@@ -72,7 +67,7 @@
 
       <!-- Data Categories -->
       <div class="row q-pa-sm q-col-gutter-lg">
-        <div class="col-6" v-for="(category, index) in localData" :key="index">
+        <div class="col-6" v-for="(category, index) in casesCategoriesData" :key="index">
           <q-card class="card-border text-white ">
             <q-card-section>
               <div class="text-h6 text-weight-light">{{ category.name }}</div>
@@ -115,7 +110,7 @@
 
       <!-- Chart all countries tests -->
       <div
-        v-if="getCountrySelected == 'Todo Centro America'"
+        v-if="this.get_select_country == 'Todo Centro America'"
         class="row q-ma-sm q-pb-md"
       >
         <div class="col-12">
@@ -134,7 +129,6 @@ export default {
   data() {
     return {
       isMobile: this.$q.platform.is.mobile,
-      countryModel: null,
       countryOptions: [
         "Todo Centro America",
         "El Salvador",
@@ -151,7 +145,7 @@ export default {
     "tests-chart": require("components/mainReport/testsChart.vue").default
   },
   methods: {
-    ...mapActions("Covid", ["selectCountry", "getCovidData"])
+    ...mapActions("Covid", ["set_select_country"])
   },
   filters: {
     formatNumber(value) {
@@ -161,25 +155,25 @@ export default {
     }
   },
   computed: {
-    ...mapGetters("Covid", ["getCountrySelected", "getCountryData"]),
-    localData() {
+    ...mapGetters("Covid", ["get_select_country", "get_country_data"]),
+    casesCategoriesData() {
       const dataCategories = [
         {
           name: "Fallecidos",
           icon: "mdi-coffin",
-          total: this.getCountryData.length
-            ? this.getCountryData[0].deaths
+          total: this.get_country_data != null
+            ? this.get_country_data.deaths
             : "...",
           color: "red",
-          today: this.getCountryData.length
-            ? this.getCountryData[0].todayDeaths
+          today: this.get_country_data != null
+            ? this.get_country_data.todayDeaths
             : 0
         },
         {
           name: "Activos",
           icon: "mdi-account-group",
-          total: this.getCountryData.length
-            ? this.getCountryData[0].active
+          total: this.get_country_data != null
+            ? this.get_country_data.active
             : "...",
           color: "light-blue",
           today: 0
@@ -187,8 +181,8 @@ export default {
         {
           name: "Recuperados",
           icon: "mdi-heart-pulse",
-          total: this.getCountryData.length
-            ? this.getCountryData[0].recovered
+          total: this.get_country_data != null
+            ? this.get_country_data.recovered
             : "...",
           color: "cyan",
           today: 0
@@ -196,8 +190,8 @@ export default {
         {
           name: "Pruebas",
           icon: "mdi-thermometer",
-          total: this.getCountryData.length
-            ? this.getCountryData[0].totalTests
+          total: this.get_country_data != null
+            ? this.get_country_data.totalTests
             : "...",
           color: "amber",
           today: 0
@@ -209,10 +203,10 @@ export default {
     //Set and Get select
     setCountry: {
       get() {
-        return this.getCountrySelected;
+        return this.get_select_country;
       },
       set(value) {
-        this.selectCountry(value);
+        this.set_select_country(value);
       }
     }
   },
@@ -222,3 +216,10 @@ export default {
   }
 };
 </script>
+
+<style lang="scss">
+.main-column{
+  width: 100%;
+  height: 100%;
+}
+</style>

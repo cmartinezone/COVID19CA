@@ -1,9 +1,7 @@
 import axios from "axios"
-import {Loading} from "quasar"
 import { analytics } from "boot/firebaseAnalytics";
 
 export const getCovidData = async ({commit, dispatch, state}) => {
-  //Loading.show()
   const countries = [
     "El Salvador",
     "Honduras",
@@ -14,45 +12,34 @@ export const getCovidData = async ({commit, dispatch, state}) => {
     "Belize"
   ];
   
-  let allCountries = []
-
   try {
+    let allCountries = {}
+    const res1 =  axios.get('https://coronavirus-19-api.herokuapp.com/countries/'+ countries[0]);
+    const res2 =  axios.get('https://coronavirus-19-api.herokuapp.com/countries/'+ countries[1]);
+    const res3 =  axios.get('https://coronavirus-19-api.herokuapp.com/countries/'+ countries[2]);
+    const res4 =  axios.get('https://coronavirus-19-api.herokuapp.com/countries/'+ countries[3]);
+    const res5 =  axios.get('https://coronavirus-19-api.herokuapp.com/countries/'+ countries[4]);
+    const res6 =  axios.get('https://coronavirus-19-api.herokuapp.com/countries/'+ countries[5]);
+    const res7 =  axios.get('https://coronavirus-19-api.herokuapp.com/countries/'+ countries[6]);
    
-   
-    let res1 = await axios.get('https://coronavirus-19-api.herokuapp.com/countries/'+ countries[0]);
-     allCountries.push(res1.data)
-    let res2 = await axios.get('https://coronavirus-19-api.herokuapp.com/countries/'+ countries[1]);
-    allCountries.push(res2.data)
-
-    let res3 = await axios.get('https://coronavirus-19-api.herokuapp.com/countries/'+ countries[2]);
-    allCountries.push(res3.data)
-   
-    let res4 = await axios.get('https://coronavirus-19-api.herokuapp.com/countries/'+ countries[3]);
-    allCountries.push(res4.data)
-
-    let res5 = await axios.get('https://coronavirus-19-api.herokuapp.com/countries/'+ countries[4]);
-    allCountries.push(res5.data)
-    
-    let res6 = await axios.get('https://coronavirus-19-api.herokuapp.com/countries/'+ countries[5]);
-    allCountries.push(res6.data)
-
-    let res7 = await axios.get('https://coronavirus-19-api.herokuapp.com/countries/'+ countries[6]);
-    allCountries.push(res7.data)
+    let responses =  await axios.all([res1, res2, res3, res4, res5, res6, res7])
+    responses.forEach(response => {
+      allCountries[response.data.country] = response.data
+    })
 
     commit('setCovidData', allCountries)
 
-    if (state.countrySelected === null || state.countrySelected === 'Todo Centro America') {
-      dispatch('selectCountry', 'Todo Centro America')
+    if (state.select_country.name === null || state.select_country.name === 'Todo Centro America') {
+      dispatch('set_select_country', 'Todo Centro America')
     }
     
   } catch (error) {
     console.log(error)
   }
- // Loading.hide()
 };
 
-export const selectCountry =  ({commit}, payload) => {  
+export const set_select_country =  ({commit}, payload) => {  
   //Record Google analytics country selection  
   analytics.logEvent('select_country', { name: payload});
-    commit('setSelectCountry', payload)   
+    commit('setSelectCountry', {name:payload})   
 }
