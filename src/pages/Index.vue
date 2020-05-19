@@ -1,7 +1,7 @@
 <template>
-  <q-page class="fit flex flex-top justify-center">
+  <q-page class="q-pa-sm">
     <!-- Main Column "full width full height" -->
-    <div class="column q-ma-md">
+    <div class="fit column">
       <!-- select country row"  - -->
       <div class="row q-ma-sm">
         <div class="col-12">
@@ -15,8 +15,6 @@
             :options="countryOptions"
             label="Selecionar País"
             no-error-icon
-            emit-value
-            map-options
           >
             <template v-slot:prepend>
               <q-icon color="primary" name="mdi-map-marker" />

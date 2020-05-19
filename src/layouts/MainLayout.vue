@@ -1,6 +1,6 @@
 <template>
-  <q-layout class="window-height" view="hHh lpR fFf">
-    <q-header bordered class="bg-primary text-white iphone-header">
+  <q-layout class="window-height" view="lHh Lpr lFf">
+    <q-header bordered class="bg-primary text-white">
       <!-- <q-bar class="bg-secondary"></q-bar> -->
       <q-toolbar>
         <q-btn
@@ -33,11 +33,11 @@
       </q-toolbar>-->
     </q-header>
 
-    <q-page-container>
+    <q-page-container class="iphone-safe-areas" >
       <router-view />
     </q-page-container>
 
-    <q-footer bordered class="bg-white iphone-footer">
+    <q-footer bordered class="bg-white q-pb-sm">
       <mainMenu />
     </q-footer>
 
@@ -142,15 +142,3 @@ export default {
 };
 </script>
 
-<style lang="scss">
-//For Iphone layout
-.iphone-footer {
-  padding-bottom: constant(safe-area-inset-bottom); /* iOS 11.0 */
-  padding-bottom: env(safe-area-inset-bottom); /* iOS 11.2 */
-}
-
-.iphone-header {
-  padding-top: constant(safe-area-inset-top); /* iOS 11.0 */
-  padding-top: env(safe-area-inset-top); /* iOS 11.2 */
-}
-</style>

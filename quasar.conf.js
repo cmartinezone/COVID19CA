@@ -82,7 +82,8 @@ module.exports = function (/* ctx */) {
         'QSpace',
         'QDialog',
         'QAvatar',
-        'QPullToRefresh'
+        'QIntersection',
+        'QChip'
       ],
 
       directives: [
@@ -130,7 +131,7 @@ module.exports = function (/* ctx */) {
 
     // animations: 'all', // --- includes all animations
     // https://quasar.dev/options/animations
-    animations: ['bounceIn', 'bounceOut'],
+    animations: [],
 
     // https://quasar.dev/quasar-cli/developing-ssr/configuring-ssr
     ssr: {
@@ -140,7 +141,10 @@ module.exports = function (/* ctx */) {
     // https://quasar.dev/quasar-cli/developing-pwa/configuring-pwa
     pwa: {
       workboxPluginMode: 'GenerateSW', // 'GenerateSW' or 'InjectManifest'
-      workboxOptions: {}, // only for GenerateSW
+      workboxOptions: {
+        skipWaiting: true,
+        clientsClaim: true
+      }, // only for GenerateSW
       manifest: {
         name: 'COVID-19 Centro America',
         short_name: 'COVID-19 CA',
@@ -179,7 +183,8 @@ module.exports = function (/* ctx */) {
       },
       metaVariables: {
         appleMobileWebAppCapable: 'yes',
-        appleMobileWebAppStatusBarStyle: 'black-translucent'
+        appleMobileWebAppStatusBarStyle: 'black-translucent',
+        appleSafariPinnedTab: 'statics/icons/safari-pinned-tab.svg',
       }
     },
 
@@ -191,7 +196,7 @@ module.exports = function (/* ctx */) {
 
     // Full list of options: https://quasar.dev/quasar-cli/developing-capacitor-apps/configuring-capacitor
     capacitor: {
-      hideSplashscreen: true
+      hideSplashscreen: false
     },
 
     // Full list of options: https://quasar.dev/quasar-cli/developing-electron-apps/configuring-electron

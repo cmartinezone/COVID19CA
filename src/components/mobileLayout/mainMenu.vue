@@ -13,7 +13,7 @@
       :key="index"
       :label="menuTab.label"
       :icon="menuTab.icon"
-      :to="{nameL:menuTab.to}"
+      :to="{name:menuTab.to}"
       exact
     />
   </q-tabs>
@@ -30,9 +30,14 @@ export default {
           icon: 'mdi-chart-bar',
           to: 'home'
         },
-       /*  {
+       {
           label: 'Sintomas',
           icon: 'mdi-heart-pulse',
+          to: 'symptoms'
+        },
+         /*  {
+          label: 'Protejete',
+          icon: 'mdi-shield-sun-outline',
           to: '#'
         },
         {
@@ -40,6 +45,8 @@ export default {
           icon: 'mdi-help-box',
           to: '#'
         } */
+
+        
       ]
     }
   }
