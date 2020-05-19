@@ -142,12 +142,10 @@ module.exports = function (/* ctx */) {
     pwa: {
       workboxPluginMode: 'GenerateSW', // 'GenerateSW' or 'InjectManifest'
       workboxOptions: {
-        skipWaiting: true,
-        clientsClaim: true
       }, // only for GenerateSW
       manifest: {
         name: 'COVID-19 Centro America',
-        short_name: 'COVID-19 CA',
+        short_name: 'COVID-19 C.A!',
         description: 'Reporte Estadístico de COVID-19 en Centro America',
         display: 'standalone',
         orientation: 'portrait',

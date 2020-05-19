@@ -1,35 +1,34 @@
 <template>
-  <q-page class="q-pa-sm">
-      <div class="row q-ma-sm">
-        <div class="col-12">
-          <q-card class="card-border text-white q-pa-sm">
-            <q-intersection
-              v-for="(symptom, index) in symptoms"
-              :key="index"
-            >
-              <q-list  bordered class="rounded-borders bg-cardcolor">
-                <q-item>
-                  <q-item-section class="text-subtitle1 text-weight-light text-weight-light">
-                    {{ symptom.name }}
-                  </q-item-section>
+  <q-page class="q-pa-sm non-selectable">
+    <div class="row q-ma-sm justify-center">
+      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <q-card class="card-border text-white q-pa-sm">
+          <q-list
+            v-for="(symptom, index) in symptoms"
+            :key="index"
+            bordered
+            class="bg-cardcolor"
+          >
+            <q-item  dense class="q-py-none">
+              <q-item-section
+                class="text-subtitle1 text-weight-light text-weight-light q-my-none q-py-none"
+              >
+                {{ symptom.name }}
+              </q-item-section>
 
-                  <q-item-section class="text-subtitle1 text-weight-medium" side>
-                    <q-chip
-                      color="red"
-                      text-color="white"
-                      :label="symptom.rate"
-                    />
-                  </q-item-section>
-                </q-item>
-              </q-list>
-            </q-intersection>
-          </q-card>
-        </div>
+              <q-item-section class="text-subtitle1 text-weight-medium q-py-none" side>
+                <q-chip color="red" text-color="white" :label="symptom.rate" />
+              </q-item-section>
+            </q-item>
+          </q-list>
+        </q-card>
       </div>
+    </div>
   </q-page>
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   // name: 'PageName',
 
@@ -49,7 +48,14 @@ export default {
         { name: "Diarrea", rate: "4%" }
       ]
     };
+  },
+  methods: {
+    ...mapActions("Covid", ['set_layoutTitle'])
+  },
+  mounted () {
+     this.set_layoutTitle('Síntomas')
   }
 };
 </script>
-*/
+
+

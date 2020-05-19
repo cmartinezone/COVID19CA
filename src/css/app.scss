@@ -1,22 +1,21 @@
 // app global css in SCSS form
 .body--light {
   /* ... */
-   background: $accent;
-  -webkit-user-select: none;
+  background: $accent;
+/*   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  -webkit-touch-callout: none;
+  -webkit-touch-callout: none; */
 }
 
-.card-border{
+.card-border {
   border-radius: 12px;
   background: $cardcolor;
 }
 
 //For Iphone layout
-.q-footer-no {
-  background: white;
+.q-footer {
   padding-bottom: constant(safe-area-inset-bottom); /* iOS 11.0 */
   padding-bottom: env(safe-area-inset-bottom); /* iOS 11.2 */
 }
@@ -25,7 +24,6 @@
   padding-top: constant(safe-area-inset-top); /* iOS 11.0 */
   padding-top: env(safe-area-inset-top); /* iOS 11.2 */
 }
-
 
 .iphone-safe-areas {
   margin-top: constant(safe-area-inset-top); /* iOS 11.0 */

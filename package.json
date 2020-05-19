@@ -2,9 +2,9 @@
   "name": "covid19ca",
   "version": "0.0.1",
   "description": "Reporte de estadisticas de Covid-19 en Centro America.",
-  "productName": "COVID-19 CA",
+  "productName": "COVID-19 C.A",
   "cordovaId": "app.covid19ca",
-  "capacitorId": "",
+  "capacitorId": "app.covidca",
   "author": "Carlos Martinez <carlos0492@outlook.com>",
   "private": true,
   "scripts": {

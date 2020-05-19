@@ -1,7 +1,6 @@
 <template>
   <q-layout class="window-height" view="lHh Lpr lFf">
-    <q-header bordered class="bg-primary text-white">
-      <!-- <q-bar class="bg-secondary"></q-bar> -->
+    <q-header bordered class="bg-primary text-white non-selectable">
       <q-toolbar>
         <q-btn
           flat
@@ -10,14 +9,21 @@
           size="md"
           icon="mdi-information"
         />
-
-        <q-toolbar-title v-if="isMobile" class="text-center"
-          >COVID-19 CA</q-toolbar-title
-        >
-        <q-toolbar-title v-else class="text-center"
+            <q-space />
+           <div class="text-center col items-center justify-center row no-wrap text-no-wrap">
+          <q-avatar size="42px">
+          <img src="statics/icons/icon-front.svg" />
+        </q-avatar>
+        
+        <q-toolbar-title class="ellipsis col-shrink" v-if="isMobile">{{
+          this.layout_title
+        }}</q-toolbar-title>
+      
+        <q-toolbar-title v-else class="text-center ellipsis col-shrink"
           >COVID-19 Centro America
         </q-toolbar-title>
-
+         </div>
+             <q-space />
         <q-btn
           v-if="this.$q.platform.is.mobile"
           flat
@@ -26,73 +32,73 @@
           @click="ShareSocialMedia"
           icon="mdi-share-variant"
         />
-      </q-toolbar>
-      <!--
-      <q-toolbar>
-        <q-toolbar-title class="text-weight-bold text-h4">Tips de usabilidad</q-toolbar-title>
-      </q-toolbar>-->
-    </q-header>
 
-    <q-page-container class="iphone-safe-areas" >
+      </q-toolbar>
+    </q-header>
+    <q-page-container class="iphone-safe-areas">
       <router-view />
     </q-page-container>
 
-    <q-footer bordered class="bg-white q-pb-sm">
+    <q-footer bordered class="bg-white">
       <mainMenu />
     </q-footer>
 
     <!-- Diaglog -->
     <q-dialog v-model="aboutModal">
       <q-card class="q-mt-lg">
-      <q-card-section class="text-center">
-        <q-avatar size="100px" class="shadow-10">
-          <img
-            src="https://avatars3.githubusercontent.com/u/25093790?s=460&u=fa88fe0e116a42aa43883c209bd69706fe41e271&v=4"
-          />
-        </q-avatar>
-      </q-card-section>
+        <q-card-section class="text-center">
+          <q-avatar size="100px" class="shadow-10">
+            <img
+              src="https://avatars3.githubusercontent.com/u/25093790?s=460&u=fa88fe0e116a42aa43883c209bd69706fe41e271&v=4"
+            />
+          </q-avatar>
+        </q-card-section>
 
-      <q-card-section class="q-py-none text-center ">
-        <div class="text-h6  text-grey-8">
-          Carlos Martinez
-        </div>
-        <div class="text-caption text-grey-8">
-          Web App Desarollador
-        </div>
+        <q-card-section class="q-py-none text-center ">
+          <div class="text-h6  text-grey-8">
+            Carlos Martinez
+          </div>
           <div class="text-caption text-grey-8">
-          {{aboutVersion}}
-        </div>
-      </q-card-section>
+            Web App Desarollador
+          </div>
+          <div class="text-caption text-grey-8">
+            {{ aboutVersion }}
+          </div>
+        </q-card-section>
 
-      <q-card-actions align="center" class="q-pb-sm" >
-        <q-btn
-          @click="openLink(social.gh)"
-          flat
-          round
-           v-close-popup
-          icon="mdi-github"
-          class="bg-black text-white"
-        />
-        <q-btn 
-        @click="openLink(social.tw)" 
-        v-close-popup
-        flat round icon="mdi-twitter" class="bg-light-blue-5 text-white" />
-        <q-btn
-          flat
-          @click="openLink(social.fb)"
-          round
-          v-close-popup
-          icon="mdi-facebook"
-          class="bg-indigo-7 text-white"
-        />
-      </q-card-actions>
-         </q-card>
+        <q-card-actions align="center" class="q-pb-sm">
+          <q-btn
+            @click="openLink(social.gh)"
+            flat
+            round
+            v-close-popup
+            icon="mdi-github"
+            class="bg-black text-white"
+          />
+          <q-btn
+            @click="openLink(social.tw)"
+            v-close-popup
+            flat
+            round
+            icon="mdi-twitter"
+            class="bg-light-blue-5 text-white"
+          />
+          <q-btn
+            flat
+            @click="openLink(social.fb)"
+            round
+            v-close-popup
+            icon="mdi-facebook"
+            class="bg-indigo-7 text-white"
+          />
+        </q-card-actions>
+      </q-card>
     </q-dialog>
   </q-layout>
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapState } from "vuex";
 import mainMenu from "components/mobileLayout/mainMenu";
 
 /* Capacitor for PWA access to phone APis */
@@ -108,7 +114,7 @@ export default {
 
   data() {
     return {
-      aboutVersion:'1.3',
+      aboutVersion: "1.5",
       isStatusBarLight: true,
       leftDrawerOpen: false,
       tab: "home",
@@ -116,11 +122,11 @@ export default {
       dialog: false,
       maximizedToggle: true,
       aboutModal: false,
-    
-      social:{
-          fb:'https://facebook.com/cmartinezone',
-          tw:'https://twitter.com/cmartinez0492',
-          gh:'https://github.com/cmartinezone'
+
+      social: {
+        fb: "https://facebook.com/cmartinezone",
+        tw: "https://twitter.com/cmartinez0492",
+        gh: "https://github.com/cmartinezone"
       }
     };
   },
@@ -134,11 +140,12 @@ export default {
       });
       console.log(shareRet);
     },
-     openLink(url){   
-          window.open(url, "_blank");    
-      }
-    
+    openLink(url) {
+      window.open(url, "_blank");
+    }
+  },
+  computed: {
+    ...mapState("Covid", ["layout_title"])
   }
 };
 </script>
-

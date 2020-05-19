@@ -43,3 +43,7 @@ export const set_select_country =  ({commit}, payload) => {
   analytics.logEvent('select_country', { name: payload});
     commit('setSelectCountry', {name:payload})   
 }
+
+export const set_layoutTitle = ({commit}, payload) =>{
+  commit('setLayoutTitle', payload)
+}

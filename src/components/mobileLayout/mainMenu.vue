@@ -31,7 +31,7 @@ export default {
           to: 'home'
         },
        {
-          label: 'Sintomas',
+          label: 'Síntomas',
           icon: 'mdi-heart-pulse',
           to: 'symptoms'
         },

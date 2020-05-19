@@ -1,10 +1,10 @@
 <template>
-  <q-page class="q-pa-sm">
+  <q-page class="flex q-pa-sm doc-container justify-center non-selectable">
     <!-- Main Column "full width full height" -->
-    <div class="fit column">
+    <div class="column main-column" >
       <!-- select country row"  - -->
       <div class="row q-ma-sm">
-        <div class="col-12">
+        <div class="col-12 ">
           <q-select
             rounded
             outlined
@@ -50,7 +50,10 @@
                     <span v-else>...</span>
                   </div>
                   <div
-                    v-if="this.get_country_data != null && this.get_country_data.todayCases != 0"
+                    v-if="
+                      this.get_country_data != null &&
+                        this.get_country_data.todayCases != 0
+                    "
                     class="text-italic text-green"
                   >
                     Incremento +
@@ -65,8 +68,12 @@
 
       <!-- Data Categories -->
       <div class="row q-pa-sm q-col-gutter-lg">
-        <div class="col-6" v-for="(category, index) in casesCategoriesData" :key="index">
-          <q-card class="card-border text-white ">
+        <div
+          class="col-6"
+          v-for="(category, index) in casesCategoriesData"
+          :key="index"
+        >
+          <q-card class="card-border text-white">
             <q-card-section>
               <div class="text-h6 text-weight-light">{{ category.name }}</div>
             </q-card-section>
@@ -112,7 +119,7 @@
         class="row q-ma-sm q-pb-md"
       >
         <div class="col-12">
-          <tests-chart></tests-chart>
+          <tests-chart class="all-pointer-events"></tests-chart>
         </div>
       </div>
     </div>
@@ -143,7 +150,7 @@ export default {
     "tests-chart": require("components/mainReport/testsChart.vue").default
   },
   methods: {
-    ...mapActions("Covid", ["set_select_country"])
+    ...mapActions("Covid", ["set_select_country", 'set_layoutTitle'])
   },
   filters: {
     formatNumber(value) {
@@ -159,38 +166,43 @@ export default {
         {
           name: "Fallecidos",
           icon: "mdi-coffin",
-          total: this.get_country_data != null
-            ? this.get_country_data.deaths
-            : "...",
+          total:
+            this.get_country_data != null
+              ? this.get_country_data.deaths
+              : "...",
           color: "red",
-          today: this.get_country_data != null
-            ? this.get_country_data.todayDeaths
-            : 0
+          today:
+            this.get_country_data != null
+              ? this.get_country_data.todayDeaths
+              : 0
         },
         {
           name: "Activos",
           icon: "mdi-account-group",
-          total: this.get_country_data != null
-            ? this.get_country_data.active
-            : "...",
+          total:
+            this.get_country_data != null
+              ? this.get_country_data.active
+              : "...",
           color: "light-blue",
           today: 0
         },
         {
           name: "Recuperados",
           icon: "mdi-heart-pulse",
-          total: this.get_country_data != null
-            ? this.get_country_data.recovered
-            : "...",
+          total:
+            this.get_country_data != null
+              ? this.get_country_data.recovered
+              : "...",
           color: "cyan",
           today: 0
         },
         {
           name: "Pruebas",
           icon: "mdi-thermometer",
-          total: this.get_country_data != null
-            ? this.get_country_data.totalTests
-            : "...",
+          total:
+            this.get_country_data != null
+              ? this.get_country_data.totalTests
+              : "...",
           color: "amber",
           today: 0
         }
@@ -208,16 +220,26 @@ export default {
       }
     }
   },
+  mounted () {
+    this.set_layoutTitle('Estadistícas')
+  },
   created() {
-   analytics.setCurrentScreen('/')
-   //analytics.logEvent('eventname', {'firsttimeuser': true });
+    analytics.setCurrentScreen("/");
+    //analytics.logEvent('eventname', {'firsttimeuser': true });
   }
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .main-column{
-  width: 100%;
-  height: 100%;
+ width: 50%;
+ height: 100%;
+}
+
+@media (max-width: $breakpoint-sm-max){
+.main-column{
+ width: 100%;
+ height: 100%;
+}
 }
 </style>
