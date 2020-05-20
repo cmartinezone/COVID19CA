@@ -1,5 +1,5 @@
 import axios from "axios"
-import { analytics } from "boot/firebaseAnalytics";
+import { analytics} from "boot/firebaseAnalytics";
 
 export const getCovidData = async ({commit, dispatch, state}) => {
   const countries = [

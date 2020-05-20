@@ -115,7 +115,7 @@
 
       <!-- Chart all countries tests -->
       <div
-        v-if="this.get_select_country == 'Todo Centro America'"
+        v-if="this.get_select_country == 'Todo Centro America' && Object.keys(this.get_covid_data).length !== 0"
         class="row q-ma-sm q-pb-md"
       >
         <div class="col-12">
@@ -160,7 +160,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters("Covid", ["get_select_country", "get_country_data"]),
+    ...mapGetters("Covid", ["get_select_country", "get_country_data", 'get_covid_data']),
     casesCategoriesData() {
       const dataCategories = [
         {

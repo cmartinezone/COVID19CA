@@ -83,7 +83,8 @@ module.exports = function (/* ctx */) {
         'QDialog',
         'QAvatar',
         'QIntersection',
-        'QChip'
+        'QChip',
+        'QImg'
       ],
 
       directives: [

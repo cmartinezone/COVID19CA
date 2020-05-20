@@ -9,21 +9,23 @@
           size="md"
           icon="mdi-information"
         />
-            <q-space />
-           <div class="text-center col items-center justify-center row no-wrap text-no-wrap">
+        <q-space />
+        <div
+          class="text-center col items-center justify-center row no-wrap text-no-wrap"
+        >
           <q-avatar size="42px">
-          <img src="statics/icons/icon-front.svg" />
-        </q-avatar>
-        
-        <q-toolbar-title class="ellipsis col-shrink" v-if="isMobile">{{
-          this.layout_title
-        }}</q-toolbar-title>
-      
-        <q-toolbar-title v-else class="text-center ellipsis col-shrink"
-          >COVID-19 Centro America
-        </q-toolbar-title>
-         </div>
-             <q-space />
+            <img src="statics/icons/icon-front.svg" />
+          </q-avatar>
+
+          <q-toolbar-title class="ellipsis col-shrink" v-if="isMobile">{{
+            this.layout_title
+          }}</q-toolbar-title>
+
+          <q-toolbar-title v-else class="text-center ellipsis col-shrink"
+            >COVID-19 Centro America
+          </q-toolbar-title>
+        </div>
+        <q-space />
         <q-btn
           v-if="this.$q.platform.is.mobile"
           flat
@@ -32,7 +34,6 @@
           @click="ShareSocialMedia"
           icon="mdi-share-variant"
         />
-
       </q-toolbar>
     </q-header>
     <q-page-container class="iphone-safe-areas">
@@ -94,6 +95,42 @@
         </q-card-actions>
       </q-card>
     </q-dialog>
+
+    <!-- If Iphone on Safari Diaglog  -->
+    <q-dialog v-model="isIphoneOnSafari">
+      <q-card flat class="dialog-card q-pa-md">
+        <q-card-section class="row items-center q-ma-none q-pa-none">
+          <q-space />
+          <q-btn icon="mdi-close" flat round dense v-close-popup />
+        </q-card-section>
+        <div class="text-center">
+          <q-img
+            class="shadow-6"
+            style="height: 64px; max-width: 64px; border-radius: 12px; "
+            src="statics/icons/icon-128x128.png"
+          />
+        </div>
+        <q-card-section class="text-center q-py-sm">
+          <div class="text-h6 text-weight-bold">COVID-19 C.A</div>
+        </q-card-section>
+
+        <q-card-section class="q-pt-none text-center text-body1 text-grey-8"
+          >Agregue esta aplicación a su pantalla de inicio para un fácil acceso
+          y una mejor experiencia.</q-card-section
+        >
+
+        <q-card-section class="q-pt-none text-center">
+          <p>
+            Toque
+            <span>
+              <q-icon size="xs" name="img:statics/iphoneshare.svg" />
+            </span>
+            y luego 'añadir a pantalla de inicio'
+          </p>
+        </q-card-section>
+      </q-card>
+    </q-dialog>
+    <!-- Diaglog  -->
   </q-layout>
 </template>
 
@@ -114,7 +151,7 @@ export default {
 
   data() {
     return {
-      aboutVersion: "1.5",
+      aboutVersion: "1.6",
       isStatusBarLight: true,
       leftDrawerOpen: false,
       tab: "home",
@@ -122,7 +159,7 @@ export default {
       dialog: false,
       maximizedToggle: true,
       aboutModal: false,
-
+      isIphoneOnSafari: false,
       social: {
         fb: "https://facebook.com/cmartinezone",
         tw: "https://twitter.com/cmartinez0492",
@@ -142,7 +179,20 @@ export default {
     },
     openLink(url) {
       window.open(url, "_blank");
+    },
+    isStandalone() {
+      if (
+        window.navigator.standalone !== true &&
+        this.$q.platform.is.ios &&
+        this.$q.platform.is.safari &&
+        this.isStandalone
+      ) {
+        this.isIphoneOnSafari = true;
+      }
     }
+  },
+  mounted () {
+    this.isStandalone()
   },
   computed: {
     ...mapState("Covid", ["layout_title"])

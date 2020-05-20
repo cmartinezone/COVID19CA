@@ -2,6 +2,10 @@ export function get_select_country(state) {
   return state.select_country.name;
 }
 
+export function get_covid_data(state){
+  return state.covid_data
+}
+
 export function get_country_data(state, getters) {
   if (state.select_country.name in state.covid_data) {
     return state.covid_data[state.select_country.name];
