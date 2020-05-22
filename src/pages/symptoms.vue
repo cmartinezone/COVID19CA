@@ -1,6 +1,6 @@
 <template>
-  <q-page class="q-pa-sm non-selectable">
-    <div class="row q-ma-sm justify-center">
+  <q-page class="non-selectable" style="min-height: calc(100vh - 104px);">
+    <div class="row q-pa-sm q-pt-md justify-center">
       <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
         <q-card class="card-border text-white q-pa-sm">
           <q-list

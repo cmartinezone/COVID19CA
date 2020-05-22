@@ -1,5 +1,7 @@
 import axios from "axios"
 import { analytics} from "boot/firebaseAnalytics";
+import {Loading} from 'quasar'
+
 
 export const getCovidData = async ({commit, dispatch, state}) => {
   const countries = [
@@ -13,6 +15,7 @@ export const getCovidData = async ({commit, dispatch, state}) => {
   ];
   
   try {
+    Loading.show()
     let allCountries = {}
     const res1 =  axios.get('https://coronavirus-19-api.herokuapp.com/countries/'+ countries[0]);
     const res2 =  axios.get('https://coronavirus-19-api.herokuapp.com/countries/'+ countries[1]);
@@ -32,9 +35,10 @@ export const getCovidData = async ({commit, dispatch, state}) => {
     if (state.select_country.name === null || state.select_country.name === 'Todo Centro America') {
       dispatch('set_select_country', 'Todo Centro America')
     }
-    
+    Loading.hide()
   } catch (error) {
     console.log(error)
+    Loading.hide()
   }
 };
 

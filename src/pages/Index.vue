@@ -1,9 +1,9 @@
 <template>
-  <q-page class="flex q-pa-sm doc-container justify-center non-selectable">
+ <q-page class="flex justify-center non-selectable" style="min-height: calc(100vh - 104px);">
     <!-- Main Column "full width full height" -->
-    <div class="column main-column" >
+    <div class="column main-column q-px-sm q-pt-md q-pb-lg" >
       <!-- select country row"  - -->
-      <div class="row q-ma-sm">
+      <div class="row">
         <div class="col-12 ">
           <q-select
             rounded
@@ -24,7 +24,7 @@
       </div>
 
       <!-- Total Cases  row   - -->
-      <div class="row q-ma-sm">
+      <div class="row q-pt-md">
         <div class="col-12">
           <q-card class="card-border text-white q-pa-sm">
             <q-card-section class=" q-my-none">
@@ -67,7 +67,7 @@
       </div>
 
       <!-- Data Categories -->
-      <div class="row q-pa-sm q-col-gutter-lg">
+      <div class="row q-pt-md q-col-gutter-md">
         <div
           class="col-6"
           v-for="(category, index) in casesCategoriesData"
@@ -116,9 +116,9 @@
       <!-- Chart all countries tests -->
       <div
         v-if="this.get_select_country == 'Todo Centro America' && Object.keys(this.get_covid_data).length !== 0"
-        class="row q-ma-sm q-pb-md"
+        class="row  q-pt-md q-pb-md"
       >
-        <div class="col-12">
+        <div class="col-12 q-pb-lg">
           <tests-chart class="all-pointer-events"></tests-chart>
         </div>
       </div>
