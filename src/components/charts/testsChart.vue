@@ -1,7 +1,8 @@
 <template>
   <q-card class="fit card-border text-center">
-    <q-card-section class="q-pb-none">
+    <q-card-section class="q-pa-none">
       <apexchart
+        ref="TestsChart"
         type="bar"
         height="250px"
         width="100%"
@@ -40,10 +41,10 @@ export default {
           text: "Pruebas por país",
           align: "center",
           style: {
-              color: "#FFFFFF",
-              fontSize: '20px',
-              fontFamily: 'Roboto',
-              fontWeight: 300
+            color: "#FFFFFF",
+            fontSize: "20px",
+            fontFamily: "Roboto",
+            fontWeight: 300
           }
         },
         dataLabels: {
@@ -56,30 +57,26 @@ export default {
           //Categories labels
           categories: [],
           labels: {
-            show:true,
+            show: true,
             style: {
               colors: "#fff",
-              fontSize: '13px',
-              fontFamily: 'Roboto',
+              fontSize: "13px",
+              fontFamily: "Roboto",
               fontWeight: 300
             }
           }
         },
         yaxis: {
-          title: {
-            text: "Cantidad",
-            style: {
-              color: "#fff",
-              fontSize: '18px',
-              fontFamily: 'Roboto',
-              fontWeight: 300
-            }
-          },
           labels: {
-            show:true,
+            show: true,
             style: {
-              color: "#fff",
-              fontFamily: 'Roboto'
+              color: ["#fff"],
+              fontFamily: "Roboto",
+              fontSize: "12px",
+              fontWeight: 400
+            },
+            formatter: val => {
+              return Intl.NumberFormat().format(val);
             }
           }
         },
@@ -95,11 +92,14 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("Covid", ['get_contries_tests']),
-    countriesTestsChart(){
-      this.chartOptions.xaxis.categories = this.get_contries_tests.categories
-      return this.chartOptions
+    ...mapGetters("Covid", ["get_contries_tests"]),
+    countriesTestsChart() {
+      this.chartOptions.xaxis.categories = this.get_contries_tests.categories;
+      return this.chartOptions;
     }
+  },
+  updated() {
+    this.$refs["TestsChart"].refresh();
   }
 };
 </script>

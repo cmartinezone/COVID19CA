@@ -34,7 +34,7 @@ module.exports = function (/* ctx */) {
       // 'roboto-font-latin-ext', // this or either 'roboto-font', NEVER both!
 
       'roboto-font', // optional, you are not bound to it
-      //'material-icons', // optional, you are not bound to it
+      'material-icons', // optional, you are not bound to it
     ],
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-framework
@@ -84,7 +84,8 @@ module.exports = function (/* ctx */) {
         'QAvatar',
         'QIntersection',
         'QChip',
-        'QImg'
+        'QImg',
+        'QPullToRefresh'
       ],
 
       directives: [
@@ -93,7 +94,7 @@ module.exports = function (/* ctx */) {
       ],
 
       // Quasar plugins
-      plugins: []
+      plugins: ['LocalStorage']
     },
 
     // https://quasar.dev/quasar-cli/cli-documentation/supporting-ie
@@ -143,10 +144,12 @@ module.exports = function (/* ctx */) {
     pwa: {
       workboxPluginMode: 'GenerateSW', // 'GenerateSW' or 'InjectManifest'
       workboxOptions: {
+      skipWaiting: true,
+      clientsClaim: true
       }, // only for GenerateSW
       manifest: {
-        name: 'COVID-19 Centro America',
-        short_name: 'COVID-19 C.A!',
+        name: 'COVID-19 C.A.',
+        short_name: 'COVID-19 C.A.',
         description: 'Reporte Estadístico de COVID-19 en Centro America',
         display: 'standalone',
         orientation: 'portrait',
@@ -218,7 +221,7 @@ module.exports = function (/* ctx */) {
       builder: {
         // https://www.electron.build/configuration/configuration
 
-        appId: 'covid19ca'
+        appId: 'app.covid19ca'
       },
 
       // More info: https://quasar.dev/quasar-cli/developing-electron-apps/node-integration

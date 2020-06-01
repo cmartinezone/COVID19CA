@@ -1,54 +1,51 @@
 
 // app global css in SCSS form
 
-
 .body--light {
   /* ... */
   background: $accent;
 }
 
-/* Iphone X Custom settintgs  */
-html, body {
+/* Set for iPhone X+ full screen */
+html,
+body {
   height: 100vh;
   width: 100%;
 }
 
-.q-layout {
-  width: 100%;
-  min-height: 100vh;
-}
+.platform-ios {
+  /* Header for iphone */
+  .q-header {
+    padding-top: constant(safe-area-inset-top) !important; /* iOS 11.0 */
+    padding-top: env(safe-area-inset-top) !important; /* iOS 11.2 */
+  }
+  .q-page-container {
+    padding-top: 51px !important;
+    padding-bottom: 57px !important;
 
-.q-header {
-  position: fixed;
-  padding-top: constant(safe-area-inset-top); /* iOS 11.0 */
-  padding-top: env(safe-area-inset-top); /* iOS 11.2 */
-}
-.q-footer {
-  position: fixed;
-  padding-bottom: constant(safe-area-inset-bottom); /* iOS 11.0 */
-  padding-bottom: env(safe-area-inset-bottom); /* iOS 11.2 */
-}
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+    padding-left: constant(safe-area-inset-left);
+    padding-right: constant(safe-area-inset-right);
+  }
+  /* q-page palding for iPhone Safe Areas */
+  .q-page {
+    padding-top: constant(safe-area-inset-top) !important;
+    padding-top: env(safe-area-inset-top) !important;
+    padding-bottom: constant(safe-area-inset-bottom) !important;
+    padding-bottom: env(safe-area-inset-bottom) !important; 
+  }
+  /* Fouter for Iphone X + */
+  .q-footer {
+    padding-bottom: constant(safe-area-inset-bottom) !important; 
+    padding-bottom: env(safe-area-inset-bottom) !important; 
+  }
 
-.q-page-container {
-  margin-top: constant(safe-area-inset-top); /* iOS 11.0 */
-  margin-top: env(safe-area-inset-top); /* iOS 11.2 */
-
-  margin-bottom: constant(safe-area-inset-bottom); /* iOS 11.0 */
-  margin-bottom: env(safe-area-inset-bottom); /* iOS 11.2 */
-}
-
-//Left and right safe areas landscape mode
-#q-app{
-  padding-left: env(safe-area-inset-left);
-  padding-right: env(safe-area-inset-right);
-  padding-left: constant(safe-area-inset-left);
-  padding-right: constant(safe-area-inset-right);
-}
-
-/* Notification buttom safe area for Iphone X */
-.q-notifications__list {
-  padding-bottom: constant(safe-area-inset-bottom); /* iOS 11.0 */
-  padding-bottom: env(safe-area-inset-bottom); /* iOS 11.2 */
+  /* Notification buttom safe area for Iphone X  +*/
+  .q-notifications__list {
+    padding-bottom: constant(safe-area-inset-bottom) !important; 
+    padding-bottom: env(safe-area-inset-bottom) !important; 
+  }
 }
 
 /* Iphone X Custom settintgs  */
@@ -56,4 +53,12 @@ html, body {
 .card-border {
   border-radius: 12px;
   background: $cardcolor;
+}
+
+.apexcharts-legend-text{
+  
+   background-color: #FFF;
+   pointer-events: auto;
+   padding: 2px 3px;
+   border-radius: 8px;
 }

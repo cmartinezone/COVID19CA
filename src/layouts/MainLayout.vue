@@ -1,6 +1,6 @@
-/* <template>
-  <q-layout  view="hHh lpR fFf">
-    <q-header bordered class="bg-primary text-white non-selectable fixed-top">
+<template>
+  <q-layout class="window-height" view="hHh lpR fFf">
+    <q-header dense  bordered class="bg-primary text-white non-selectable">
       <q-toolbar>
         <q-btn
           flat
@@ -9,7 +9,7 @@
           size="md"
           icon="mdi-information"
         />
-        <q-space />
+        
         <div
           class="text-center col items-center justify-center row no-wrap text-no-wrap"
         >
@@ -36,11 +36,11 @@
         />
       </q-toolbar>
     </q-header>
-    <q-page-container class="q-layout-transition" style="padding-top: 50px; padding-bottom: 54px;">
+    <q-page-container>
       <router-view />
     </q-page-container>
 
-    <q-footer bordered class="bg-white fixed-bottom">
+    <q-footer bordered class="bg-white">
       <mainMenu />
     </q-footer>
 
@@ -65,11 +65,15 @@
           <div class="text-caption text-grey-8">
             {{ aboutVersion }}
           </div>
-           <div class="text-caption text-grey-8 ">
-           Contribuye a este proyecto!
-          
-          </div> 
-          <q-btn class="q-my-sm" @click="openLink(social.pp)" style="background: goldenrod; color: white" label="Donando en Paypal" />
+          <div class="text-caption text-grey-8 ">
+            Contribuye a este proyecto!
+          </div>
+          <q-btn
+            class="q-my-sm"
+            @click="openLink(social.pp)"
+            style="background: goldenrod; color: white"
+            label="Donando en Paypal"
+          />
         </q-card-section>
 
         <q-card-actions align="center" class="q-pb-sm">
@@ -156,7 +160,7 @@ export default {
 
   data() {
     return {
-      aboutVersion: "1.10",
+      aboutVersion: "2.5",
       isStatusBarLight: true,
       leftDrawerOpen: false,
       tab: "home",
@@ -169,7 +173,8 @@ export default {
         fb: "https://facebook.com/cmartinezone",
         tw: "https://twitter.com/cmartinez0492",
         gh: "https://github.com/cmartinezone",
-        pp: 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=5NWDHDEXV9582&source=url'
+        pp:
+          "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=5NWDHDEXV9582&source=url"
       }
     };
   },
@@ -197,12 +202,11 @@ export default {
       }
     }
   },
-  mounted () {
-    this.isStandalone()
+  mounted() {
+    this.isStandalone();
   },
   computed: {
     ...mapState("Covid", ["layout_title"])
   }
 };
 </script>
- 

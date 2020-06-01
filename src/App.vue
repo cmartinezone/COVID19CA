@@ -7,13 +7,12 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 export default {
-  name: 'App',
+  name: "App",
   methods: {
     ...mapActions("Covid", ["getCovidData"])
   },
-   
-   created(){
-     this.getCovidData()
-   }
-}
+  created() {
+    this.getCovidData();
+  }
+};
 </script>

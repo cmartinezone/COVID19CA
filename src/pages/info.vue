@@ -2,29 +2,10 @@
   <q-page class="fit non-selectable">
     <div class="row q-pa-sm q-pt-md justify-center">
       <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-        <q-card class="card-border text-white q-pa-sm">
-          <q-list
-            v-for="(symptom, index) in symptoms"
-            :key="index"
-            bordered
-            class="bg-cardcolor"
-          >
-            <q-item dense class="q-py-none">
-              <q-item-section
-                class="text-subtitle1 text-weight-light text-weight-light q-my-none q-py-none"
-              >
-                {{ symptom.name }}
-              </q-item-section>
-
-              <q-item-section
-                class="text-subtitle1 text-weight-medium q-py-none"
-                side
-              >
-                <q-chip color="red" text-color="white" :label="symptom.rate" />
-              </q-item-section>
-            </q-item>
-          </q-list>
-        </q-card>
+        <h6 class="text-center q-pa-md">
+          Información addicional, en desarollo...
+          <q-icon size="md" name="mdi-account-hard-hat" />
+        </h6>
       </div>
     </div>
   </q-page>
@@ -56,7 +37,7 @@ export default {
     ...mapActions("Covid", ["set_layoutTitle"])
   },
   mounted() {
-    this.set_layoutTitle("Síntomas");
+    this.set_layoutTitle("Información");
   }
 };
 </script>

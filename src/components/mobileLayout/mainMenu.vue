@@ -5,13 +5,13 @@
     switch-indicator
     no-caps
     active-color="primary"
-    class="text-secondary"
+    class="text-grey-7"
   >
     <q-route-tab
       :ripple="false"
       v-for="(menuTab, index ) in mobileMenu"
       :key="index"
-      :label="menuTab.label"
+      :label="isMobile ? '': menuTab.label"
       :icon="menuTab.icon"
       :to="{name:menuTab.to}"
       exact
@@ -24,29 +24,28 @@ export default {
   name: 'mainMenu',
   data() {
     return {
+      isMobile: this.$q.platform.is.mobile,
       mobileMenu: [
         {
           label: 'Estadistícas',
-          icon: 'mdi-chart-bar',
+          icon: 'mdi-poll-box-outline',
           to: 'home'
         },
        {
           label: 'Síntomas',
-          icon: 'mdi-heart-pulse',
+          icon: 'mdi-virus-outline',
           to: 'symptoms'
         },
-         /*  {
-          label: 'Protejete',
-          icon: 'mdi-shield-sun-outline',
-          to: '#'
+    /*     {
+          label: 'Protégete',
+          icon: 'mdi-shield-star-outline',
+          to: 'selfprotection'
         },
         {
-          label: 'Ayuda',
-          icon: 'mdi-help-box',
-          to: '#'
-        } */
-
-        
+          label: 'Información',
+          icon: 'mdi-information-outline',
+          to: 'info'
+        }  */
       ]
     }
   }
