@@ -14,17 +14,17 @@
   },
   "dependencies": {
     "@capacitor/core": "^2.1.0",
-    "@quasar/extras": "^1.0.0",
+    "@quasar/extras": "^1.8.2",
     "apexcharts": "^3.19.0",
     "axios": "^0.18.1",
     "firebase": "7.14.3",
     "firebase-tools": "^8.4.0",
-    "quasar": "^1.12.2",
+    "quasar": "^1.12.4",
     "vue-apexcharts": "^1.5.3",
     "vue-i18n": "^8.0.0"
   },
   "devDependencies": {
-    "@quasar/app": "^1.9.3"
+    "@quasar/app": "^1.9.6"
   },
   "engines": {
     "node": ">= 10.18.1",

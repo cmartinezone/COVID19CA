@@ -157,3 +157,8 @@ export const set_select_country = ({ commit }, payload) => {
 export const set_layoutTitle = ({ commit }, payload) => {
   commit("setLayoutTitle", payload);
 };
+
+
+export const set_scroll_positon = ({commit}, payload) => {
+  commit('SetScrollPosition', payload)
+}

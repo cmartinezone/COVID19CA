@@ -1,6 +1,6 @@
 <template>
-  <q-layout class="window-height" view="hHh lpR fFf">
-    <q-header dense  bordered class="bg-primary text-white non-selectable">
+  <q-layout @scroll="scrollPosition" class="window-height" view="hHh lpR fFf">
+    <q-header dense bordered class="bg-primary text-white non-selectable">
       <q-toolbar>
         <q-btn
           flat
@@ -9,7 +9,7 @@
           size="md"
           icon="mdi-information"
         />
-        
+
         <div
           class="text-center col items-center justify-center row no-wrap text-no-wrap"
         >
@@ -17,13 +17,13 @@
             <img src="statics/icons/icon-front.svg" />
           </q-avatar>
 
-          <q-toolbar-title class="ellipsis col-shrink" v-if="isMobile">{{
-            this.layout_title
-          }}</q-toolbar-title>
+          <q-toolbar-title class="ellipsis col-shrink" v-if="isMobile">
+            {{ this.layout_title }}
+          </q-toolbar-title>
 
           <q-toolbar-title v-else class="text-center ellipsis col-shrink"
-            >COVID-19 Centro America
-          </q-toolbar-title>
+            >COVID-19 Centro America</q-toolbar-title
+          >
         </div>
         <q-space />
         <q-btn
@@ -40,7 +40,7 @@
       <router-view />
     </q-page-container>
 
-    <q-footer bordered class="bg-white">
+    <q-footer bordered elevated class="bg-white">
       <mainMenu />
     </q-footer>
 
@@ -55,17 +55,11 @@
           </q-avatar>
         </q-card-section>
 
-        <q-card-section class="q-py-none text-center ">
-          <div class="text-h6  text-grey-8">
-            Carlos Martinez
-          </div>
+        <q-card-section class="q-py-none text-center">
+          <div class="text-h6 text-grey-8">Carlos Martinez</div>
+          <div class="text-caption text-grey-8">Web App Desarollador</div>
+          <div class="text-caption text-grey-8">{{ aboutVersion }}</div>
           <div class="text-caption text-grey-8">
-            Web App Desarollador
-          </div>
-          <div class="text-caption text-grey-8">
-            {{ aboutVersion }}
-          </div>
-          <div class="text-caption text-grey-8 ">
             Contribuye a este proyecto!
           </div>
           <q-btn
@@ -123,10 +117,10 @@
           <div class="text-h6 text-weight-bold">COVID-19 C.A</div>
         </q-card-section>
 
-        <q-card-section class="q-pt-none text-center text-body1 text-grey-8"
-          >Agregue esta aplicación a su pantalla de inicio para un fácil acceso
-          y una mejor experiencia.</q-card-section
-        >
+        <q-card-section class="q-pt-none text-center text-body1 text-grey-8">
+          Agregue esta aplicación a su pantalla de inicio para un fácil acceso y
+          una mejor experiencia.
+        </q-card-section>
 
         <q-card-section class="q-pt-none text-center">
           <p>
@@ -144,7 +138,8 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { LocalStorage } from 'quasar'
+import { mapState, mapActions } from "vuex";
 import mainMenu from "components/mobileLayout/mainMenu";
 
 /* Capacitor for PWA access to phone APis */
@@ -160,7 +155,7 @@ export default {
 
   data() {
     return {
-      aboutVersion: "2.5",
+      aboutVersion: "3.1",
       isStatusBarLight: true,
       leftDrawerOpen: false,
       tab: "home",
@@ -169,6 +164,7 @@ export default {
       maximizedToggle: true,
       aboutModal: false,
       isIphoneOnSafari: false,
+      currentScrollPosition: null,
       social: {
         fb: "https://facebook.com/cmartinezone",
         tw: "https://twitter.com/cmartinez0492",
@@ -179,6 +175,7 @@ export default {
     };
   },
   methods: {
+    ...mapActions('Covid',['set_scroll_positon']),
     async ShareSocialMedia() {
       let shareRet = await Share.share({
         title: `COVID-19 Centro America`,
@@ -200,13 +197,38 @@ export default {
       ) {
         this.isIphoneOnSafari = true;
       }
+    },
+     /*  Manipulating scrolling */
+    scrollPosition(scroll){
+      this.currentScrollPosition = scroll
+    },
+
+    setScrollPosition(from){
+          
+        if (this.currentScrollPosition != null) {
+          let routeFromName = from.name
+          let payload = {}
+          payload[routeFromName] = {x:0, y:this.currentScrollPosition.position}
+          this.set_scroll_positon(payload)
+        }
+       
+        this.currentScrollPosition = null
     }
+      /*  Manipulating scrolling */
   },
   mounted() {
     this.isStandalone();
   },
   computed: {
     ...mapState("Covid", ["layout_title"])
+  },
+
+  watch: {
+  '$route' (to, from) {
+    const toDepth = to.path.split('/').length
+    const fromDepth = from.path.split('/').length
+   this.setScrollPosition(from)
   }
+}
 };
 </script>
