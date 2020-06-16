@@ -15,7 +15,8 @@ module.exports = function(/* ctx */) {
       /*   'i18n', */
       "axios",
       "apexChart",
-      "firebaseAnalytics"
+      "firebaseAnalytics",
+      "scrollposition"
     ],
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css

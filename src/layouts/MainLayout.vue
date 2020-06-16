@@ -1,5 +1,5 @@
 <template>
-  <q-layout @scroll="scrollPosition" class="window-height" view="hHh lpR fFf">
+  <q-layout view="hHh lpR fFf">
     <q-header dense bordered class="bg-primary text-white non-selectable">
       <q-toolbar>
         <q-btn
@@ -138,8 +138,8 @@
 </template>
 
 <script>
-import { LocalStorage } from 'quasar'
-import { mapState, mapActions } from "vuex";
+import { openURL  } from "quasar";
+import { mapState } from "vuex";
 import mainMenu from "components/mobileLayout/mainMenu";
 
 /* Capacitor for PWA access to phone APis */
@@ -155,16 +155,10 @@ export default {
 
   data() {
     return {
-      aboutVersion: "3.1",
-      isStatusBarLight: true,
-      leftDrawerOpen: false,
-      tab: "home",
+      aboutVersion: "3.3",
       isMobile: this.$q.platform.is.mobile,
-      dialog: false,
-      maximizedToggle: true,
       aboutModal: false,
       isIphoneOnSafari: false,
-      currentScrollPosition: null,
       social: {
         fb: "https://facebook.com/cmartinezone",
         tw: "https://twitter.com/cmartinez0492",
@@ -175,7 +169,6 @@ export default {
     };
   },
   methods: {
-    ...mapActions('Covid',['set_scroll_positon']),
     async ShareSocialMedia() {
       let shareRet = await Share.share({
         title: `COVID-19 Centro America`,
@@ -183,52 +176,25 @@ export default {
         url: `https://covid19ca.app`,
         dialogTitle: `COVID-19 Centro America`
       });
-      console.log(shareRet);
+      //console.log(shareRet);
     },
     openLink(url) {
-      window.open(url, "_blank");
+      openURL(url)
     },
     isStandalone() {
-      if (
-        window.navigator.standalone !== true &&
-        this.$q.platform.is.ios &&
-        this.$q.platform.is.safari &&
-        this.isStandalone
-      ) {
+      const isIOS = this.$q.platform.is.ios;
+      const isSafari = this.$q.platform.is.safari;
+      const isStandalone = window.navigator.standalone;
+      if (isStandalone !== true && isIOS && isSafari) {
         this.isIphoneOnSafari = true;
       }
-    },
-     /*  Manipulating scrolling */
-    scrollPosition(scroll){
-      this.currentScrollPosition = scroll
-    },
-
-    setScrollPosition(from){
-          
-        if (this.currentScrollPosition != null) {
-          let routeFromName = from.name
-          let payload = {}
-          payload[routeFromName] = {x:0, y:this.currentScrollPosition.position}
-          this.set_scroll_positon(payload)
-        }
-       
-        this.currentScrollPosition = null
     }
-      /*  Manipulating scrolling */
   },
   mounted() {
     this.isStandalone();
   },
   computed: {
     ...mapState("Covid", ["layout_title"])
-  },
-
-  watch: {
-  '$route' (to, from) {
-    const toDepth = to.path.split('/').length
-    const fromDepth = from.path.split('/').length
-   this.setScrollPosition(from)
   }
-}
 };
 </script>

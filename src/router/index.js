@@ -2,8 +2,6 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import routes from "./routes";
 
-import { scroll } from 'quasar'
-
 Vue.use(VueRouter);
 
 /*
@@ -15,11 +13,11 @@ Vue.use(VueRouter);
  * with the Router instance.
  */
 
-export default function({store}/* { store, ssrContext } */) {
+export default function(/* { store, ssrContext } */) {
   const Router = new VueRouter({
     //scrollBehavior: () => ({ x: 0, y: 0 }),
-    scrollBehavior(to, from, savedPosition) {
-     /*  Manipulating scrolling */
+ /*    scrollBehavior(to, from, savedPosition) {
+     //  Manipulating scrolling 
       if (store.state['Covid'].scroller != null) {
         if (to.name in store.state['Covid'].scroller) {
           let routeTo = to.name
@@ -30,8 +28,8 @@ export default function({store}/* { store, ssrContext } */) {
       }else{
         return { x: 0, y: 0 };
       }
-       /*  Manipulating scrolling */
-    },
+       //  Manipulating scrolling 
+    }, */
 
     routes,
     // Leave these as they are and change in quasar.conf.js instead!

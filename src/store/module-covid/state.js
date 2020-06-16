@@ -3,7 +3,6 @@ export default function () {
    // As Object
     covid_data:{},
     select_country: {name:null},
-    layout_title: 'COVID-19 C.A.',
-    scroller: null
+    layout_title: 'COVID-19 C.A.'
   }
 }

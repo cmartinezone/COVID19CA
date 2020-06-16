@@ -15,11 +15,3 @@ export function setTimeLineCovidData(state, payload) {
     state.covid_data[key].timeline = value.timeline;
   });
 }
-
-export function SetScrollPosition(state, payload) {
-  if (state.scroller != null) {
-    state.scroller = {...state.scroller, ...payload}
-  }else{
-    state.scroller = payload
-  }
-}

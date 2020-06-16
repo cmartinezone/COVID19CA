@@ -19,9 +19,10 @@
     "axios": "^0.18.1",
     "firebase": "7.14.3",
     "firebase-tools": "^8.4.0",
-    "quasar": "^1.12.4",
+    "quasar": "^1.12.5",
     "vue-apexcharts": "^1.5.3",
-    "vue-i18n": "^8.0.0"
+    "vue-i18n": "^8.0.0",
+    "vue-scroll-behavior": "0.2.0"
   },
   "devDependencies": {
     "@quasar/app": "^1.9.6"
