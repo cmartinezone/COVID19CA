@@ -1,10 +1,10 @@
 <template>
   <q-page class="flex fit justify-center non-selectable">
     <!-- Main Column "full width full height" -->
-    <div class="column main-column q-px-sm q-pt-md q-pb-lg">
+    <div class="column main-column q-px-sm q-pt-md q-pb-xl">
       <q-pull-to-refresh @refresh="refresh">
         <!-- select country row"  - -->
-        <div class="row q-pb-md">
+        <div class="row q-pb-sm">
           <div class="col-12">
             <select-country />
           </div>
@@ -17,10 +17,10 @@
       <!-- Chart all countries tests -->
       <div
         v-if="this.get_historyCountry_cases !== null"
-        class="fit column justify-center q-pb-md"
+        class="fit column justify-center q-pb-sm"
       >
         <infected-chart
-          class="col q-pt-md q-pb-none q-pl-none q-pr-sm all-pointer-events overflow-hidden"
+          class="col q-pt-sm q-pb-none q-pl-none q-pr-sm all-pointer-events overflow-hidden"
         ></infected-chart>
       </div>
 
@@ -29,7 +29,7 @@
         class="fit column justify-center q-pb-md"
       >
         <new-daily-cases
-          class="col q-pt-md q-pb-none q-pl-none q-pr-sm all-pointer-events overflow-hidden"
+          class="col q-pt-sm q-pb-none q-pl-none q-pr-sm all-pointer-events overflow-hidden"
         ></new-daily-cases>
       </div>
 
@@ -41,7 +41,7 @@
         class="fit column justify-center q-pb-md"
       >
         <tests-chart
-          class="col q-pt-md q-pb-none q-px-sm all-pointer-events"
+          class="col q-pt-sm q-pb-none q-px-sm all-pointer-events"
         ></tests-chart>
       </div>
     </div>

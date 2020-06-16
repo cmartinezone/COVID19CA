@@ -4,10 +4,10 @@
       Última actualización: {{ this.lastUpdate }}
     </div>
     <!-- Total Cases  row   - -->
-    <div class="row q-pb-md">
+    <div class="row q-pb-sm">
       <div class="col-12">
         <q-card class="card-border text-white q-pa-sm">
-          <q-card-section class=" q-my-none">
+          <q-card-section class="q-py-sm q-my-none">
             <div class="text-h6 text-weight-light text-weight-light">
               Total de casos confirmados
             </div>
@@ -47,14 +47,14 @@
     </div>
 
     <!-- Data Categories -->
-    <div class="row q-pb-md q-col-gutter-md">
+    <div class="row q-pb-sm q-col-gutter-sm">
       <div
         class="col-6"
         v-for="(category, index) in casesCategoriesData"
         :key="index"
       >
         <q-card class="card-border text-white">
-          <q-card-section>
+          <q-card-section class="q-py-sm">
             <div class="text-h6 text-weight-light">{{ category.name }}</div>
           </q-card-section>
 
