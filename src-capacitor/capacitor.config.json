@@ -1,0 +1,7 @@
+{
+  "appId": "app.covid19ca",
+  "appName": "COVID-19 C.A",
+  "bundledWebRuntime": false,
+  "npmClient": "yarn",
+  "webDir": "www"
+}

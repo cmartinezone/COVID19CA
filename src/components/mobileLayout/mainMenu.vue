@@ -14,7 +14,6 @@
       :label="menuTab.label"
       :icon="menuTab.icon"
       :to="{ name: menuTab.to }"
-      :replace="true"
       exact
     />
   </q-tabs>
