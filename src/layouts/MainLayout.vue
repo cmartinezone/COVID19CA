@@ -14,7 +14,7 @@
           class="text-center col items-center justify-center row no-wrap text-no-wrap"
         >
           <q-avatar size="42px">
-            <img src="statics/icons/icon-front.svg" />
+            <img src="icons/icon-front.svg" />
           </q-avatar>
 
           <q-toolbar-title class="ellipsis col-shrink" v-if="isMobile">
@@ -110,7 +110,7 @@
           <q-img
             class="shadow-6"
             style="height: 64px; max-width: 64px; border-radius: 12px; "
-            src="statics/icons/icon-128x128.png"
+            src="icons/icon-128x128.png"
           />
         </div>
         <q-card-section class="text-center q-py-sm">
@@ -126,7 +126,7 @@
           <p>
             Toque
             <span>
-              <q-icon size="xs" name="img:statics/iphoneshare.svg" />
+              <q-icon size="xs" name="img:iphoneshare.svg" />
             </span>
             y luego 'añadir a pantalla de inicio'
           </p>
@@ -138,7 +138,7 @@
 </template>
 
 <script>
-import { openURL  } from "quasar";
+import { openURL } from "quasar";
 import { mapState } from "vuex";
 import mainMenu from "components/mobileLayout/mainMenu";
 
@@ -179,7 +179,7 @@ export default {
       //console.log(shareRet);
     },
     openLink(url) {
-      openURL(url)
+      openURL(url);
     },
     isStandalone() {
       const isIOS = this.$q.platform.is.ios;

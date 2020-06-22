@@ -3,8 +3,6 @@
   "version": "0.0.1",
   "description": "Reporte de estadisticas de Covid-19 en Centro America.",
   "productName": "COVID-19 C.A",
-  "cordovaId": "app.covid19ca",
-  "capacitorId": "app.covidca",
   "author": "Carlos Martinez <carlos0492@outlook.com>",
   "private": true,
   "scripts": {
@@ -17,6 +15,7 @@
     "@quasar/extras": "^1.8.2",
     "apexcharts": "^3.19.0",
     "axios": "^0.18.1",
+    "core-js": "3.0.0",
     "firebase": "7.14.3",
     "firebase-tools": "^8.4.0",
     "quasar": "^1.12.5",
@@ -25,14 +24,23 @@
     "vue-scroll-behavior": "0.2.0"
   },
   "devDependencies": {
-    "@quasar/app": "^1.9.6"
+    "@quasar/app": "2.0.0",
+    "workbox-webpack-plugin": "^5.0.0"
   },
+  "browserslist": [
+    "last 10 Chrome versions",
+    "last 10 Firefox versions",
+    "last 4 Edge versions",
+    "last 7 Safari versions",
+    "last 8 Android versions",
+    "last 8 ChromeAndroid versions",
+    "last 8 FirefoxAndroid versions",
+    "last 10 iOS versions",
+    "last 5 Opera versions"
+  ],
   "engines": {
     "node": ">= 10.18.1",
     "npm": ">= 6.13.4",
     "yarn": ">= 1.21.1"
-  },
-  "browserslist": [
-    "last 1 version, not dead, ie >= 11"
-  ]
+  }
 }
