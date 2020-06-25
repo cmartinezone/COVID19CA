@@ -155,7 +155,7 @@ export default {
 
   data() {
     return {
-      aboutVersion: "3.5",
+      aboutVersion: "3.6",
       isMobile: this.$q.platform.is.mobile,
       aboutModal: false,
       isIphoneOnSafari: false,

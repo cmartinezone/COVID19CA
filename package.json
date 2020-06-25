@@ -18,13 +18,13 @@
     "core-js": "3.0.0",
     "firebase": "7.14.3",
     "firebase-tools": "^8.4.0",
-    "quasar": "^1.12.5",
+    "quasar": "^1.12.8",
     "vue-apexcharts": "^1.5.3",
     "vue-i18n": "^8.0.0",
     "vue-scroll-behavior": "0.2.0"
   },
   "devDependencies": {
-    "@quasar/app": "2.0.0",
+    "@quasar/app": "2.0.1",
     "workbox-webpack-plugin": "^5.0.0"
   },
   "browserslist": [
