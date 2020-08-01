@@ -15,19 +15,13 @@
         </template>
       </q-pull-to-refresh>
       <!-- Chart all countries tests -->
-      <div
-        v-if="this.get_historyCountry_cases !== null"
-        class="fit column justify-center q-pb-sm"
-      >
+      <div v-if="this.get_historyCountry_cases !== null" class="fit column justify-center q-pb-sm">
         <infected-chart
           class="col q-pt-sm q-pb-none q-pl-none q-pr-sm all-pointer-events overflow-hidden"
         ></infected-chart>
       </div>
 
-      <div
-        v-if="this.get_newDaily_cases !== null"
-        class="fit column justify-center q-pb-md"
-      >
+      <div v-if="this.get_newDaily_cases !== null" class="fit column justify-center q-pb-md">
         <new-daily-cases
           class="col q-pt-sm q-pb-none q-pl-none q-pr-sm all-pointer-events overflow-hidden"
         ></new-daily-cases>
@@ -40,9 +34,7 @@
         "
         class="fit column justify-center q-pb-md"
       >
-        <tests-chart
-          class="col q-pt-sm q-pb-none q-px-sm all-pointer-events"
-        ></tests-chart>
+        <tests-chart class="col q-pt-sm q-pb-none q-px-sm all-pointer-events"></tests-chart>
       </div>
     </div>
   </q-page>
@@ -78,15 +70,15 @@ export default {
     },
     //Force PWA update
     forceSWupdate() {
-      if ('serviceWorker' in navigator) {
+      if ("serviceWorker" in navigator) {
         navigator.serviceWorker
           .getRegistrations()
           .then(function(registrations) {
             registrations.forEach(registration => {
-              registration.update()
-              console.log('Forcing PWA update!')
-            })
-          })
+              registration.update();
+              console.log("Forcing PWA update!");
+            });
+          });
       }
     }
   },

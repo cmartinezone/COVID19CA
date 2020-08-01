@@ -2,28 +2,16 @@
   <q-layout view="hHh lpR fFf">
     <q-header dense bordered class="bg-primary text-white non-selectable">
       <q-toolbar>
-        <q-btn
-          flat
-          round
-          @click="aboutModal = !aboutModal"
-          size="md"
-          icon="mdi-information"
-        />
+        <q-btn flat round @click="aboutModal = !aboutModal" size="md" icon="mdi-information" />
 
-        <div
-          class="text-center col items-center justify-center row no-wrap text-no-wrap"
-        >
+        <div class="text-center col items-center justify-center row no-wrap text-no-wrap">
           <q-avatar size="42px">
             <img src="icons/icon-front.svg" />
           </q-avatar>
 
-          <q-toolbar-title class="ellipsis col-shrink" v-if="isMobile">
-            {{ this.layout_title }}
-          </q-toolbar-title>
+          <q-toolbar-title class="ellipsis col-shrink" v-if="isMobile">{{ this.layout_title }}</q-toolbar-title>
 
-          <q-toolbar-title v-else class="text-center ellipsis col-shrink"
-            >COVID-19 Centro America</q-toolbar-title
-          >
+          <q-toolbar-title v-else class="text-center ellipsis col-shrink">COVID-19 Centro America</q-toolbar-title>
         </div>
         <q-space />
         <q-btn
@@ -59,9 +47,7 @@
           <div class="text-h6 text-grey-8">Carlos Martinez</div>
           <div class="text-caption text-grey-8">Web App Desarollador</div>
           <div class="text-caption text-grey-8">{{ aboutVersion }}</div>
-          <div class="text-caption text-grey-8">
-            Contribuye a este proyecto!
-          </div>
+          <div class="text-caption text-grey-8">Contribuye a este proyecto!</div>
           <q-btn
             class="q-my-sm"
             @click="openLink(social.pp)"
@@ -155,7 +141,7 @@ export default {
 
   data() {
     return {
-      aboutVersion: "3.6",
+      aboutVersion: "3.7",
       isMobile: this.$q.platform.is.mobile,
       aboutModal: false,
       isIphoneOnSafari: false,
