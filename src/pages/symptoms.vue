@@ -3,13 +3,22 @@
     <div class="row q-pa-sm q-pt-md justify-center">
       <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
         <q-card class="card-border text-white q-pa-sm">
-          <q-list v-for="(symptom, index) in symptoms" :key="index" bordered class="bg-cardcolor">
+          <q-list
+            v-for="(symptom, index) in symptoms"
+            :key="index"
+            bordered
+            class="bg-cardcolor"
+          >
             <q-item dense class="q-py-none">
               <q-item-section
                 class="text-subtitle1 text-weight-light text-weight-light q-my-none q-py-none"
-              >{{ symptom.name }}</q-item-section>
+                >{{ symptom.name }}</q-item-section
+              >
 
-              <q-item-section class="text-subtitle1 text-weight-medium q-py-none" side>
+              <q-item-section
+                class="text-subtitle1 text-weight-medium q-py-none"
+                side
+              >
                 <q-chip color="red" text-color="white" :label="symptom.rate" />
               </q-item-section>
             </q-item>
@@ -38,15 +47,15 @@ export default {
         { name: "Resfriado", rate: "11%" },
         { name: "Congestion nasal", rate: "5%" },
         { name: "Náuseas y vómitos ", rate: "5%" },
-        { name: "Diarrea", rate: "4%" }
-      ]
+        { name: "Diarrea", rate: "4%" },
+      ],
     };
   },
   methods: {
-    ...mapActions("Covid", ["set_layoutTitle"])
+    ...mapActions("Covid", ["set_layoutTitle"]),
   },
   mounted() {
     this.set_layoutTitle("Síntomas");
-  }
+  },
 };
 </script>

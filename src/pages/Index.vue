@@ -15,13 +15,19 @@
         </template>
       </q-pull-to-refresh>
       <!-- Chart all countries tests -->
-      <div v-if="this.get_historyCountry_cases !== null" class="fit column justify-center q-pb-sm">
+      <div
+        v-if="this.get_historyCountry_cases !== null"
+        class="fit column justify-center q-pb-sm"
+      >
         <infected-chart
           class="col q-pt-sm q-pb-none q-pl-none q-pr-sm all-pointer-events overflow-hidden"
         ></infected-chart>
       </div>
 
-      <div v-if="this.get_newDaily_cases !== null" class="fit column justify-center q-pb-md">
+      <div
+        v-if="this.get_newDaily_cases !== null"
+        class="fit column justify-center q-pb-md"
+      >
         <new-daily-cases
           class="col q-pt-sm q-pb-none q-pl-none q-pr-sm all-pointer-events overflow-hidden"
         ></new-daily-cases>
@@ -30,11 +36,13 @@
       <div
         v-if="
           this.get_select_country == 'Todo Centro America' &&
-            Object.keys(this.get_covid_data).length !== 0
+          Object.keys(this.get_covid_data).length !== 0
         "
         class="fit column justify-center q-pb-md"
       >
-        <tests-chart class="col q-pt-sm q-pb-none q-px-sm all-pointer-events"></tests-chart>
+        <tests-chart
+          class="col q-pt-sm q-pb-none q-px-sm all-pointer-events"
+        ></tests-chart>
       </div>
     </div>
   </q-page>
@@ -43,11 +51,12 @@
 <script>
 import { analytics } from "boot/firebaseAnalytics";
 import { mapGetters, mapActions } from "vuex";
+
 export default {
   name: "Home",
   data() {
     return {
-      isMobile: this.$q.platform.is.mobile
+      isMobile: this.$q.platform.is.mobile,
     };
   },
   components: {
@@ -57,7 +66,7 @@ export default {
       .default,
     "tests-chart": require("components/charts/testsChart.vue").default,
     "infected-chart": require("components/charts/infectedChart.vue").default,
-    "new-daily-cases": require("components/charts/newDailyCases.vue").default
+    "new-daily-cases": require("components/charts/newDailyCases.vue").default,
   },
   methods: {
     ...mapActions("Covid", ["set_layoutTitle", "getCovidData"]),
@@ -73,29 +82,29 @@ export default {
       if ("serviceWorker" in navigator) {
         navigator.serviceWorker
           .getRegistrations()
-          .then(function(registrations) {
-            registrations.forEach(registration => {
+          .then(function (registrations) {
+            registrations.forEach((registration) => {
               registration.update();
               console.log("Forcing PWA update!");
             });
           });
       }
-    }
+    },
   },
   computed: {
     ...mapGetters("Covid", [
       "get_select_country",
       "get_covid_data",
       "get_historyCountry_cases",
-      "get_newDaily_cases"
-    ])
+      "get_newDaily_cases",
+    ]),
   },
   mounted() {
     this.set_layoutTitle("Estadistícas");
   },
   created() {
     analytics.setCurrentScreen("/");
-  }
+  },
 };
 </script>
 

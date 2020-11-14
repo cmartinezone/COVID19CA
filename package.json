@@ -24,7 +24,7 @@
     "vue-scroll-behavior": "0.2.0"
   },
   "devDependencies": {
-    "@quasar/app": "2.1.1",
+    "@quasar/app": "2.1.6",
     "workbox-webpack-plugin": "^5.0.0"
   },
   "browserslist": [
