@@ -14,7 +14,7 @@
     "@capacitor/core": "^2.1.0",
     "@quasar/extras": "^1.9.14",
     "apexcharts": "^3.19.0",
-    "axios": "^0.18.1",
+    "axios": "^0.21.1",
     "core-js": "3.0.0",
     "firebase": "7.14.3",
     "firebase-tools": "^8.4.0",
