@@ -13,7 +13,7 @@
   "dependencies": {
     "@capacitor/core": "^2.1.0",
     "@quasar/extras": "^1.9.14",
-    "apexcharts": "^3.19.0",
+    "apexcharts": "^3.24.0",
     "axios": "^0.18.1",
     "core-js": "3.0.0",
     "firebase": "7.14.3",
