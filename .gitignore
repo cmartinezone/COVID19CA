@@ -11,7 +11,7 @@ node_modules
 /.firebase
 
 #Ignore Firebase config
-/src/boot/firebaseAnalytics.js
+#/src/boot/firebaseAnalytics.js
 
 #PWA directory
 /src-pwa
